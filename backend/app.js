@@ -14,6 +14,8 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var dbConfig = require('./config/database');
 
+// set this to remove a deprecation warning realted to uniqueness in db
+mongoose.set('useCreateIndex', true);
 // Bring in the data model
 require('./models/db');
 // Now you bring in the passport config
