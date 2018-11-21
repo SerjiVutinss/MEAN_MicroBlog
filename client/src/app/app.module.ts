@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -13,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuardService } from './auth-guard.service';
+import { MaterialModule } from './material/material.module';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -31,9 +33,11 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
+    RouterModule.forRoot(routes),
     FormsModule,
-    RouterModule.forRoot(routes)
+    MaterialModule,
   ],
   providers: [
     AuthenticationService,

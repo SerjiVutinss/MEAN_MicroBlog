@@ -7,13 +7,15 @@ import { AuthenticationService, UserDetails } from '../authentication.service';
 export class ProfileComponent {
   details: UserDetails;
 
+  private isLoaded: boolean = true;
   constructor(private auth: AuthenticationService) { }
 
   ngOnInit() {
+    this.isLoaded = false;
     this.auth.profile().subscribe(user => {
       this.details = user;
     }, (err) => {
       console.error(err);
-    });
+    }, () => this.isLoaded = true);
   }
 }

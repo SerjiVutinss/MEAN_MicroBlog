@@ -1,25 +1,29 @@
-<div class="container">
+<mat-card class="login-card">
+  <mat-card-header>
+    <mat-card-subtitle>Please enter your details to login:</mat-card-subtitle>
+  </mat-card-header>
 
-  <div class="row">
+  <mat-card-content>
+    <form class="login-form">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput name="email" placeholder="Email:" [(ngModel)]="credentials.email">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput type="password" name="password" placeholder="Password" [(ngModel)]="credentials.password">
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <mat-spinner *ngIf="!isSubmitted"></mat-spinner>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-stroked-button (click)="login()">Login</button>
+  </mat-card-actions>
 
-    <div class="col-md-6">
-
-      <h1 class="form-signin-heading">Sign in</h1>
-      <p class="lead">Not a member? Please <a routerLink="/register">register</a> instead.</p>
-
-      <form (submit)="login()">
-        <div class="form-group">
-          <label for="email">Email address</label>
-          <input type="email" class="form-control" name="email" placeholder="Enter email" [(ngModel)]="credentials.email">
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="credentials.password">
-        </div>
-        <button type="submit" class="btn btn-default">Sign in!</button>
-      </form>
-
-    </div>
-  </div>
-
-</div>
+</mat-card>

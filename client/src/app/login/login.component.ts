@@ -11,13 +11,18 @@ export class LoginComponent {
     password: ''
   };
 
+  private isSubmitted: boolean = true;
+
   constructor(private auth: AuthenticationService, private router: Router) { }
 
   login() {
+    this.isSubmitted = false;
     this.auth.login(this.credentials).subscribe(() => {
       this.router.navigateByUrl('/profile');
     }, (err) => {
       console.error(err);
-    });
+    },
+      () => this.isSubmitted = true
+    );
   }
 }
