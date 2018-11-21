@@ -6,4 +6,4 @@
 `npm run dev` will run the server with live reload - ensure nodemon is installed globally (`npm install -g nodemon`)
 
 ## Client
-`cd client`, `npm install` then 'ng serve' to run
+`cd client`, `npm install` then `ng serve` to run
