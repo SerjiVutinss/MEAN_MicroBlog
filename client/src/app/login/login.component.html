@@ -1,22 +1,20 @@
 <mat-card class="login-card">
   <mat-card-header>
-    <mat-card-subtitle>Please enter your details to login:</mat-card-subtitle>
+    <mat-card-subtitle>Not registered? <button mat-button routerLink="/register">Register</button></mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
     <form class="login-form">
       <table class="example-full-width" cellspacing="0">
         <tr>
-          <td>
-            <mat-form-field class="example-full-width">
-              <input matInput name="email" placeholder="Email:" [(ngModel)]="credentials.email">
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="example-full-width">
-              <input matInput type="password" name="password" placeholder="Password" [(ngModel)]="credentials.password">
-            </mat-form-field>
-          </td>
+          <mat-form-field class="example-full-width">
+            <input matInput name="email" placeholder="Email:" [(ngModel)]="credentials.email">
+          </mat-form-field>
+        </tr>
+        <tr>
+          <mat-form-field class="example-full-width">
+            <input matInput type="password" name="password" placeholder="Password" [(ngModel)]="credentials.password">
+          </mat-form-field>
         </tr>
       </table>
     </form>
@@ -25,5 +23,4 @@
   <mat-card-actions>
     <button mat-stroked-button (click)="login()">Login</button>
   </mat-card-actions>
-
 </mat-card>

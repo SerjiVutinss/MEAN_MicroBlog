@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
 
   <div class="row">
     <div class="col-md-6">
@@ -22,4 +22,36 @@
     </div>
   </div>
 
-</div>
+</div> -->
+
+<mat-card class="login-card">
+  <mat-card-header>
+      <mat-card-subtitle>Already registered? <button mat-button routerLink="/login">Sign in</button></mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form class="login-form">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <mat-form-field class="example-full-width">
+            <input matInput name="name" placeholder="Name:" [(ngModel)]="credentials.name">
+          </mat-form-field>
+        </tr>
+        <tr>
+          <mat-form-field class="example-full-width">
+            <input matInput name="email" placeholder="Email:" [(ngModel)]="credentials.email">
+          </mat-form-field>
+        </tr>
+        <tr>
+          <mat-form-field class="example-full-width">
+            <input matInput type="password" name="password" placeholder="Password" [(ngModel)]="credentials.password">
+          </mat-form-field>
+        </tr>
+      </table>
+    </form>
+    <!-- <mat-spinner *ngIf="!isSubmitted"></mat-spinner> -->
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-stroked-button (click)="register()">Register</button>
+  </mat-card-actions>
+</mat-card>
