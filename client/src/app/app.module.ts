@@ -38,6 +38,7 @@ import { DatePipe } from './shared/pipes/date.pipe';
 
 // Import all of our routes to pass to the router
 import { routes } from './app.routes';
+import { TimeFromNowPipe } from './time-from-now.pipe';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { routes } from './app.routes';
     PostListComponent,
     RedditListComponent,
     DatePipe,
+    TimeFromNowPipe,
 
   ],
   imports: [

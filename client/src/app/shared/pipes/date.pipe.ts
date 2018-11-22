@@ -1,27 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { DateFunctions } from '../date.functions';
 
 @Pipe({
-  name: 'dateToUtc'
+  name: 'dateFromUTC'
 })
 export class DatePipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
+  transform(value: Date, args?: any): any {
 
-    // var myDate = new Date("July 1, 1978 02:30:00"); // Your timezone!
-    // var myEpoch = myDate.getTime() / 1000.0;
-    // console.log("Epoch" + myEpoch);
+    // let retVal = value.toLocaleString();
+    // console.log(retVal);
 
-    // var myDate = new Date(value * 1000);
+    return DateFunctions.getDateFromUTCEpoch(value);
 
-    // let retVal = myDate.toLocaleString();
-    // // document.write(myDate.to toGMTString()+"<br>"+myDate.toLocaleString());
-
-    var myDate = new Date(value); // Your timezone!
-    console.log(myDate);
-    var retVal = myDate.getTime();
-
-
-    return retVal;
+    // return retVal;
   }
 
 }

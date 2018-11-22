@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { Post } from '../post.model';
 import { PostService } from '../post.service';
+import { DateFunctions } from 'src/app/shared/date.functions';
 
 @Component({
   selector: 'app-post-list',
@@ -14,6 +15,7 @@ export class PostListComponent implements OnInit {
   userID: String;
 
   private posts: Post[] = [];
+  private isUserData: boolean = false;
 
   constructor(
     private postService: PostService
@@ -23,7 +25,9 @@ export class PostListComponent implements OnInit {
 
     if (this.userID) {
       this.postService.getUserPosts(this.userID).subscribe(
-        (data) => this.posts = data
+        (data) => this.posts = data,
+        null,
+        () => this.isUserData = true
       )
     }
     else {

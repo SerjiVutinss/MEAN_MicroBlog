@@ -23,10 +23,10 @@ router.get('/', function(req, res) {
     res.redirect('/home');
   });
 
-// profile
+// profile route - protected with auth
 router.get('/profile', auth, profileCtrl.profileRead);
 
-// authentication
+// authentication routes
 router.post('/register', authCtrl.register);
 router.post('/login', authCtrl.login);
 

@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { Post } from '../post.model';
 import { PostService } from '../post.service';
 import { AuthenticationService } from '../../auth';
+import { DateFunctions } from 'src/app/shared/date.functions';
 
 @Component({
   selector: 'app-post-create',
@@ -46,8 +47,11 @@ export class PostCreateComponent implements OnInit {
   }
 
   createPost() {
-    let createdUTC = new Date();
-    this.post.created_utc = createdUTC;
+    // let createdUTC = new Date();
+    // this.post.created_utc = createdUTC;
+
+    //
+    this.post.created_utc = DateFunctions.getCurrentUTCEpoch();
 
     console.log(this.post.created_utc);
     //this.post.created_utc = 

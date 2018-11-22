@@ -3,8 +3,12 @@
     <h4>{{ p.title }}</h4>
     <p>{{ p.content }}</p>
     <pre>UserID: {{ p.user_id }}</pre>
-    <pre>Created: {{ p.created_utc | date }}</pre>
-    <button [routerLink]="['/post/edit', p._id]">Edit</button>
-    <button (click)="onDelete(p._id)">Delete</button>
+    <pre>Created: {{ p.created_utc | dateFromUTC | date: 'medium' }}</pre>
+    <pre>{{ p.created_utc | timeFromNow }}</pre>
+
+    <div *ngIf="isUserData">
+      <button [routerLink]="['/post/edit', p._id]">Edit</button>
+      <button (click)="onDelete(p._id)">Delete</button>
+    </div>
   </li>
 </ul>
