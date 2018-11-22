@@ -15,12 +15,17 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuardService } from './auth-guard.service';
 import { MaterialModule } from './material/material.module';
+import { PostCreateComponent } from './post-create/post-create.component';
+import { PostListComponent } from './post-list/post-list.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] }
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
+  { path: 'post/list', component: PostListComponent },
+  { path: 'post/create', component: PostCreateComponent },
+  { path: 'post/edit/:id', component: PostCreateComponent }
 ];
 
 @NgModule({
@@ -29,7 +34,9 @@ const routes: Routes = [
     LoginComponent,
     ProfileComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    PostCreateComponent,
+    PostListComponent,
   ],
   imports: [
     BrowserModule,

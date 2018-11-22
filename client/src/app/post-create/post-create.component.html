@@ -1,6 +1,6 @@
 <mat-card class="login-card">
   <mat-card-header>
-    <mat-card-subtitle>Already registered? <button mat-button routerLink="/login">Sign in</button></mat-card-subtitle>
+    <mat-card-subtitle>Enter new post:</mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
@@ -8,17 +8,17 @@
       <table class="example-full-width" cellspacing="0">
         <tr>
           <mat-form-field class="example-full-width">
-            <input matInput name="name" placeholder="Name:" [(ngModel)]="credentials.name">
+            <input matInput disabled="true" name="user" placeholder="User" [(ngModel)]="post.user_id">
           </mat-form-field>
         </tr>
         <tr>
           <mat-form-field class="example-full-width">
-            <input matInput name="email" placeholder="Email:" [(ngModel)]="credentials.email">
+            <input matInput name="title" placeholder="Title" [(ngModel)]="post.title">
           </mat-form-field>
         </tr>
         <tr>
           <mat-form-field class="example-full-width">
-            <input matInput type="password" name="password" placeholder="Password" [(ngModel)]="credentials.password">
+            <input matInput type="text" name="content" placeholder="Content..." [(ngModel)]="post.content">
           </mat-form-field>
         </tr>
       </table>
@@ -26,6 +26,6 @@
     <!-- <mat-spinner *ngIf="!isSubmitted"></mat-spinner> -->
   </mat-card-content>
   <mat-card-actions>
-    <button mat-stroked-button (click)="register()">Register</button>
+    <button mat-stroked-button (click)="savePost()">Post</button>
   </mat-card-actions>
 </mat-card>
