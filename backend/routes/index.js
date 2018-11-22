@@ -7,21 +7,28 @@ var auth = jwt({
     userProperty: 'payload'
 });
 
-var ctrlProfile = require('../controllers/profile');
-var ctrlAuth = require('../controllers/authentication');
+var profileCtrl = require('../controllers/profile');
+var authCtrl = require('../controllers/authentication');
+
+
 
 // TEST ENDPOINT
 /* GET home page. */
-router.get('/', function (req, res, next) {
-    console.log("ENDPOINT called");
-    res.send('Express RESTful API');
-});
+// router.get('/', function (req, res, next) {
+//     console.log("ENDPOINT called");
+//     res.send('Express RESTful API');
+// });
+
+router.get('/', function(req, res) {
+    res.redirect('/home');
+  });
 
 // profile
-router.get('/profile', auth, ctrlProfile.profileRead);
+router.get('/profile', auth, profileCtrl.profileRead);
 
 // authentication
-router.post('/register', ctrlAuth.register);
-router.post('/login', ctrlAuth.login);
+router.post('/register', authCtrl.register);
+router.post('/login', authCtrl.login);
+
 
 module.exports = router;

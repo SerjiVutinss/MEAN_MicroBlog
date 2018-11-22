@@ -21,11 +21,15 @@ require('./models/db');
 // Now you bring in the passport config
 require('./config/passport');
 
+// Now any other data?
+
+
 // End Advanced Setup
 
-// Bring in the routes for the API
-var routes = require('./routes/index');
 var app = express();
+// Bring in the routes for the API
+var indexRouter = require('./routes/index');
+var postRouter = require('./routes/post.routes')
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -37,7 +41,9 @@ app.use(cors());
 app.use(passport.initialize());
 
 // Use the API routes when path starts with /api
-app.use('/api', routes);
+app.use('/api', indexRouter);
+app.use('/api/post', postRouter);
+
 console.log("API up and running");
 
 /**
