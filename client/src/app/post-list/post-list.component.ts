@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../post.service';
 import { Post } from '../models/Post';
-import { RedditLink } from '../models/RedditLink';
-import { RedditService } from '../reddit.service';
 
 @Component({
   selector: 'app-post-list',
@@ -11,21 +9,16 @@ import { RedditService } from '../reddit.service';
 })
 export class PostListComponent implements OnInit {
 
-  constructor(
-    private postService: PostService,
-    private redditService: RedditService
-  ) { }
-
   private posts: Post[] = [];
-  private redditPosts: RedditLink[] = [];
+
+  constructor(
+    private postService: PostService
+  ) { }
 
   ngOnInit() {
     this.postService.getPosts().subscribe(
       (data) => this.posts = data
     );
-    this.redditService.fetchPosts("/r/ireland", "top", 5).subscribe(
-      (data) => this.redditPosts = data
-    )
   }
 
   onDelete(id: String) {

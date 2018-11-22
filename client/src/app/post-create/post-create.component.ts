@@ -21,18 +21,19 @@ export class PostCreateComponent implements OnInit {
   ) { }
 
   @Input()
-  private post: Post = { user_id: "", title: "", content: "" };
+  private post: Post = { user_id: "", title: "", content: "", created_utc: "" };
   // private post: any;
   private userId: String = "";
-  private post_id: String;
+  // private post_id: String;
 
   private isEdit: boolean = false;
 
   ngOnInit() {
     this.post._id = this.route.snapshot.params['id'];
+    console.log(this.post._id);
     if (this.post._id) {
       this.isEdit = true;
-      this.postService.getPost(this.post_id).subscribe(data => {
+      this.postService.getPost(this.post._id).subscribe(data => {
         this.post = data;
       });
     }
@@ -44,6 +45,11 @@ export class PostCreateComponent implements OnInit {
   }
 
   createPost() {
+    let createdUTC = new Date();
+    this.post.created_utc = createdUTC;
+
+    console.log(this.post.created_utc);
+    //this.post.created_utc = 
     return this.postService.addPost(this.post).subscribe(
       () => {
         this.goBack();
@@ -55,7 +61,7 @@ export class PostCreateComponent implements OnInit {
   }
 
   updatePost() {
-    return this.postService.updatePost(this.post_id, this.post).subscribe(
+    return this.postService.updatePost(this.post._id, this.post).subscribe(
       () => { this.goBack(); }
     );
   }

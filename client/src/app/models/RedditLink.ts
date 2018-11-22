@@ -3,4 +3,5 @@ export class RedditLink {
     permalink: String;
     thumbnail: String;
     url: String;
+    created_utc: any;
 }

@@ -29,7 +29,6 @@ export class RedditService {
           return this.unwrapData(data);
         }
         ));
-    // <p *ngFor="let r of redditPosts">{{ r.title }} - {{ r.url }} - {{ r.permalink }}</p>
   }
 
   private unwrapData(data: any) {
@@ -42,6 +41,7 @@ export class RedditService {
       post.url = children[i].data.url;
       post.thumbnail = children[i].data.thumbnail;
       post.permalink = children[i].data.permalink;
+      post.created_utc = children[i].data.created_utc;
       redditPosts.push(post);
     }
     return redditPosts;

@@ -21,6 +21,8 @@ import { MaterialModule } from './material/material.module';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { RedditService } from './reddit.service';
+import { RedditListComponent } from './reddit-list/reddit-list.component';
+import { DatePipe } from './date.pipe';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -29,7 +31,8 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'post/list', component: PostListComponent },
   { path: 'post/create', component: PostCreateComponent },
-  { path: 'post/edit/:id', component: PostCreateComponent }
+  { path: 'post/edit/:id', component: PostCreateComponent },
+  { path: 'reddit-list', component: RedditListComponent }
 ];
 
 @NgModule({
@@ -41,6 +44,8 @@ const routes: Routes = [
     RegisterComponent,
     PostCreateComponent,
     PostListComponent,
+    RedditListComponent,
+    DatePipe,
   ],
   imports: [
     BrowserModule,
