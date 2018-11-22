@@ -30,7 +30,8 @@ exports.create_post = function (req, res) {
     PostModel.create({
         user_id: req.body.user_id,
         title: req.body.title,
-        content: req.body.content
+        content: req.body.content,
+        created_utc: req.body.created_utc
     });
     console.log(req.body.title);
 };

@@ -13,6 +13,9 @@ var postSchema = new mongoose.Schema({
     content: {
         type: String,
         required: true
+    },
+    created_utc: {
+        type: String
     }
 });
 
