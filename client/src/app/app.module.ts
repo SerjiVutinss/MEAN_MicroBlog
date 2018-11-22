@@ -3,6 +3,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { HttpClientModule } from '@angular/common/http';
+import { JsonpModule } from '@angular/http';
+
+
 import { FormsModule } from '@angular/forms';
 
 // Components
@@ -17,6 +20,7 @@ import { AuthGuardService } from './auth-guard.service';
 import { MaterialModule } from './material/material.module';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { PostListComponent } from './post-list/post-list.component';
+import { RedditService } from './reddit.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -45,10 +49,12 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule,
     MaterialModule,
+    JsonpModule
   ],
   providers: [
     AuthenticationService,
-    AuthGuardService
+    AuthGuardService,
+    RedditService
   ],
   bootstrap: [AppComponent]
 })
