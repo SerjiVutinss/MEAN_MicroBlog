@@ -1,28 +1,25 @@
 import { Component } from '@angular/core';
-import { AuthenticationService, TokenPayload } from '../authentication.service';
 import { Router } from '@angular/router';
 
+import { AuthenticationService, TokenPayload } from '../authentication.service';
+
 @Component({
-  templateUrl: './login.component.html'
+  templateUrl: './register.component.html'
 })
-export class LoginComponent {
+export class RegisterComponent {
   credentials: TokenPayload = {
     email: '',
+    name: '',
     password: ''
   };
 
-  private isSubmitted: boolean = true;
-
   constructor(private auth: AuthenticationService, private router: Router) { }
 
-  login() {
-    this.isSubmitted = false;
-    this.auth.login(this.credentials).subscribe(() => {
+  register() {
+    this.auth.register(this.credentials).subscribe(() => {
       this.router.navigateByUrl('/profile');
     }, (err) => {
       console.error(err);
-    },
-      () => this.isSubmitted = true
-    );
+    });
   }
 }

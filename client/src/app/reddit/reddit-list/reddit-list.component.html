@@ -16,7 +16,7 @@
         <img mat-card-image src="{{ r.url }}" alt="Missing Photo">
         <mat-card-content>
           <p>
-            {{ r.created_utc | dateFromUtc}}
+            {{ r.created_utc | date: 'medium'}}
           </p>
         </mat-card-content>
         <mat-card-actions>

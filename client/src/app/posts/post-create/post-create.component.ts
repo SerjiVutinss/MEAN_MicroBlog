@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Post } from '../models/Post';
-import { PostService } from '../post.service';
-import { AuthenticationService } from '../authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+
+import { Post } from '../post.model';
+import { PostService } from '../post.service';
+import { AuthenticationService } from '../../auth';
 
 @Component({
   selector: 'app-post-create',

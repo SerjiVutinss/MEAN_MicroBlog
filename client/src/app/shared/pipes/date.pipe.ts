@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'dateFromUtc'
+  name: 'dateToUtc'
 })
 export class DatePipe implements PipeTransform {
 
@@ -11,10 +11,15 @@ export class DatePipe implements PipeTransform {
     // var myEpoch = myDate.getTime() / 1000.0;
     // console.log("Epoch" + myEpoch);
 
-    var myDate = new Date(value * 1000);
+    // var myDate = new Date(value * 1000);
 
-    let retVal = myDate.toLocaleString();
-    // document.write(myDate.to toGMTString()+"<br>"+myDate.toLocaleString());
+    // let retVal = myDate.toLocaleString();
+    // // document.write(myDate.to toGMTString()+"<br>"+myDate.toLocaleString());
+
+    var myDate = new Date(value); // Your timezone!
+    console.log(myDate);
+    var retVal = myDate.getTime();
+
 
     return retVal;
   }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Jsonp } from '@angular/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { RedditLink } from './models/RedditLink';
+import { RedditLink } from './reddit-link.model';
 @Injectable({
   providedIn: 'root'
 })

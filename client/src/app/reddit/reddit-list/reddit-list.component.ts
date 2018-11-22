@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RedditLink } from '../models/RedditLink';
+import { RedditLink } from '../reddit-link.model';
 import { RedditService } from '../reddit.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { RedditService } from '../reddit.service';
 export class RedditListComponent implements OnInit {
 
   private redditPosts: RedditLink[] = [];
-  
+
   constructor(private redditService: RedditService) { }
 
   ngOnInit() {
