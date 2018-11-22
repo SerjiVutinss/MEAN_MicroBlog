@@ -6,9 +6,11 @@ exports.index = function (req, res) {
 
 // Display list of all Posts.
 exports.list = function (req, res) {
+    // hardcode to sort descending by date created
+    // TODO: look at additional route parameters
     PostModel.find(function (err, data) {
         res.json(data);
-    });
+    }).sort({ created_utc: -1 });
 };
 
 // Display detail page for a specific Post.
