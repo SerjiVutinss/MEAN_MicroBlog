@@ -8,17 +8,25 @@ import { Post } from './models/Post';
 })
 export class PostService {
 
-  constructor(private http: HttpClient) {
-
-  }
+  constructor(private http: HttpClient) { }
 
   getPosts(): Observable<any> {
     return this.http.get('/api/post/list');
   }
 
+  getPost(id: String): Observable<any> {
+    return this.http.get("api/post/" + id);
+  }
+
   addPost(post: Post): Observable<any> {
-    //const post: Post = { title: "SomeTitle", content: "Something" };
-    console.log(post);
     return this.http.post('/api/post', post, { responseType: 'text' });
+  }
+
+  updatePost(id: String, post: Post): Observable<any> {
+    return this.http.put("/api/post/" + id, post, { responseType: 'text' });
+  }
+
+  deletePost(id: String): Observable<any> {
+    return this.http.delete("/api/post/" + id);
   }
 }

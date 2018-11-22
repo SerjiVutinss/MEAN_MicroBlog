@@ -5,7 +5,9 @@ var postCtrl = require('../controllers/post-controller');
 
 // posts
 router.get('/list', postCtrl.list)
-router.get('/detail/:id', postCtrl.detail);
+router.get('/:id', postCtrl.detail);
 router.post('/', postCtrl.create_post);
+router.put('/:id', postCtrl.update_post);
+router.delete('/:id', postCtrl.delete_get);
 
 module.exports = router;

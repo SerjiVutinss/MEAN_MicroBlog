@@ -37,7 +37,13 @@ exports.create_post = function (req, res) {
 
 // Display Post delete form on GET.
 exports.delete_get = function (req, res) {
-    res.send('NOT IMPLEMENTED: Post delete GET');
+    // res.send('NOT IMPLEMENTED: Post delete GET');
+    PostModel.deleteOne({ _id: req.params.id },
+        function (err, data) {
+            if (err)
+                res.send(err);
+            res.send(data);
+        })
 };
 
 // Handle Post delete on POST.
@@ -52,5 +58,13 @@ exports.update_get = function (req, res) {
 
 // Handle Post update on POST.
 exports.update_post = function (req, res) {
-    res.send('NOT IMPLEMENTED: Post update POST');
+    // res.send('NOT IMPLEMENTED: Post update POST');
+    console.log("Update POST" + req.params.id);
+    console.log(req.body.title);
+    console.log(req.body.content);
+
+    PostModel.findByIdAndUpdate(req.params.id, req.body,
+        function (err, data) {
+            res.send(data);
+        })
 };

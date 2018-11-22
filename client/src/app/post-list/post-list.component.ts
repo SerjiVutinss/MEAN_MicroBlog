@@ -19,4 +19,10 @@ export class PostListComponent implements OnInit {
     )
   }
 
+  onDelete(id: String) {
+    this.postService.deletePost(id).subscribe(() => {
+      this.ngOnInit();
+    })
+  }
+
 }

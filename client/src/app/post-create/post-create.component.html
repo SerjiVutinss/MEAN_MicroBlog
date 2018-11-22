@@ -26,6 +26,8 @@
     <!-- <mat-spinner *ngIf="!isSubmitted"></mat-spinner> -->
   </mat-card-content>
   <mat-card-actions>
-    <button mat-stroked-button (click)="savePost()">Post</button>
+    <button *ngIf="!isEdit" mat-stroked-button (click)="createPost()">Post</button>
+    <button *ngIf="isEdit" mat-stroked-button (click)="updatePost()">Save</button>
+    <button mat-stroked-button (click)="goBack()">Back</button>
   </mat-card-actions>
 </mat-card>
