@@ -69,3 +69,11 @@ exports.update_post = function (req, res) {
             res.send(data);
         })
 };
+
+exports.user_posts_get = function (req, res) {
+    // res.send("HELLO USER POSTS");
+    var p = [{ title: "none found" }];
+    PostModel.find({ user_id: req.params.id }, function (err, data) {
+        res.send(data);
+    });
+}

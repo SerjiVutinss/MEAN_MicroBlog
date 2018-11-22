@@ -10,4 +10,6 @@ router.post('/', postCtrl.create_post);
 router.put('/:id', postCtrl.update_post);
 router.delete('/:id', postCtrl.delete_get);
 
+router.get('/user/:id', postCtrl.user_posts_get);
+
 module.exports = router;

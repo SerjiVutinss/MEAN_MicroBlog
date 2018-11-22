@@ -17,6 +17,7 @@ export class ProfileComponent {
       this.details = user;
     }, (err) => {
       console.error(err);
-    }, () => this.isLoaded = true);
+    },
+      () => this.isLoaded = true);
   }
 }

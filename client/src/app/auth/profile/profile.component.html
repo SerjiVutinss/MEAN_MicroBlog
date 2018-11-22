@@ -10,7 +10,8 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-button routerLink="/post/create">New Post</button>
-    <button mat-button routerLink="/reddit-list">Reddit Links</button>
     <!-- <button mat-button>BACK</button> -->
   </mat-card-actions>
 </mat-card>
+
+<app-post-list *ngIf="isLoaded" [userID]="details._id"></app-post-list>

@@ -29,4 +29,9 @@ export class PostService {
   deletePost(id: String): Observable<any> {
     return this.http.delete("/api/post/" + id);
   }
+
+  getUserPosts(userID: String): Observable<any> {
+    // console.log("Get posts for: " + userID);
+    return this.http.get("/api/post/user/" + userID);
+  }
 }
