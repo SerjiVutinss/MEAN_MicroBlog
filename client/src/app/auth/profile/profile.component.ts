@@ -6,7 +6,7 @@ import { AuthenticationService, UserDetails } from '../authentication.service';
   templateUrl: './profile.component.html'
 })
 export class ProfileComponent {
-  details: UserDetails;
+  userDetails: UserDetails;
 
   private isLoaded: boolean = true;
   constructor(private auth: AuthenticationService) { }
@@ -14,7 +14,7 @@ export class ProfileComponent {
   ngOnInit() {
     this.isLoaded = false;
     this.auth.profile().subscribe(user => {
-      this.details = user;
+      this.userDetails = user;
     }, (err) => {
       console.error(err);
     },

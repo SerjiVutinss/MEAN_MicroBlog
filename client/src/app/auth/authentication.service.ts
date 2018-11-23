@@ -10,6 +10,7 @@ export interface UserDetails {
   name: string;
   exp: number;
   iat: number;
+  isAdmin: boolean;
 }
 
 interface TokenResponse {
@@ -62,7 +63,7 @@ export class AuthenticationService {
     }
   }
 
-  private request(method: 'post' | 'get', type: 'login' | 'register' | 'profile', user?: TokenPayload): Observable<any> {
+  public request(method: 'post' | 'get', type: 'login' | 'register' | 'profile' | 'post/list', user?: TokenPayload): Observable<any> {
     let base;
 
     if (method === 'post') {

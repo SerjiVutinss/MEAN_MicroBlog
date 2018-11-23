@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { Post } from '../post.model';
 import { PostService } from '../post.service';
-import { DateFunctions } from 'src/app/shared/date.functions';
+import { UserDetails } from 'src/app/auth/authentication.service';
 
 @Component({
   selector: 'app-post-list',
@@ -11,8 +11,9 @@ import { DateFunctions } from 'src/app/shared/date.functions';
 })
 export class PostListComponent implements OnInit {
 
+  // TODO: better to get these from AuthService?
   @Input()
-  userID: String;
+  userDetails: UserDetails;
 
   private posts: Post[] = [];
   private isUserData: boolean = false;
@@ -22,19 +23,26 @@ export class PostListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
-    if (this.userID) {
-      this.postService.getUserPosts(this.userID).subscribe(
-        (data) => this.posts = data,
-        null,
-        () => this.isUserData = true
-      )
+    if (this.userDetails) {
+      this.getUserPosts(this.userDetails._id);
     }
     else {
-      this.postService.getPosts().subscribe(
-        (data) => this.posts = data
-      );
+      this.getAllPosts();
     }
+  }
+
+  getAllPosts() {
+    this.postService.getPosts().subscribe(
+      (data) => this.posts = data
+    );
+  }
+
+  getUserPosts(userID: string) {
+    this.postService.getUserPosts(userID).subscribe(
+      (data) => this.posts = data,
+      null,
+      () => this.isUserData = true
+    )
   }
 
   onDelete(id: String) {

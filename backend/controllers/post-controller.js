@@ -77,5 +77,5 @@ exports.user_posts_get = function (req, res) {
     var p = [{ title: "none found" }];
     PostModel.find({ user_id: req.params.id }, function (err, data) {
         res.send(data);
-    });
+    }).sort({ created_utc: -1 });
 }

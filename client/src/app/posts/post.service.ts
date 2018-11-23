@@ -3,15 +3,21 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Post } from './post.model';
 
+import { AuthenticationService } from '../auth';
+
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private auth: AuthenticationService
+  ) { }
 
   getPosts(): Observable<any> {
-    return this.http.get('/api/post/list');
+    // return this.http.get('/api/post/list');
+    return this.auth.request('get', 'post/list');
   }
 
   getPost(id: String): Observable<any> {

@@ -16,6 +16,9 @@ var postSchema = new mongoose.Schema({
     },
     created_utc: {
         type: String
+    },
+    username: {
+        type: String
     }
 });
 
