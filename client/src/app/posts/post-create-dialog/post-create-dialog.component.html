@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>New Post</h1>
+<div mat-dialog-content>
+  <form>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <mat-form-field class="example-full-width">
+          <input matInput disabled="true" name="user" placeholder="UserID" [(ngModel)]="post.user_id">
+        </mat-form-field>
+      </tr>
+      <tr>
+        <mat-form-field class="example-full-width">
+          <input matInput disabled="true" name="post_username" placeholder="Username" [(ngModel)]="post.username">
+        </mat-form-field>
+      </tr>
+      <tr>
+        <mat-form-field class="example-full-width">
+          <input matInput name="title" placeholder="Title" [(ngModel)]="post.title">
+        </mat-form-field>
+      </tr>
+      <tr>
+        <mat-form-field class="example-full-width">
+          <textarea matInput type="text" name="content" placeholder="Content..." [(ngModel)]="post.content"></textarea>
+        </mat-form-field>
+      </tr>
+    </table>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button (click)="onPostCreate()">Post</button>
+  <button mat-stroked-button (click)="goBack()">Back</button>
+</div>

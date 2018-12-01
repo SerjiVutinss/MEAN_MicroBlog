@@ -3,25 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-
-export interface UserDetails {
-  _id: string;
-  email: string;
-  name: string;
-  exp: number;
-  iat: number;
-  isAdmin: boolean;
-}
-
-interface TokenResponse {
-  token: string;
-}
-
-export interface TokenPayload {
-  email: string;
-  password: string;
-  name?: string;
-}
+import { UserDetails, TokenResponse, TokenPayload } from './auth.models';
 
 @Injectable()
 export class AuthenticationService {
@@ -30,13 +12,13 @@ export class AuthenticationService {
   constructor(private http: HttpClient, private router: Router) { }
 
   private saveToken(token: string): void {
-    localStorage.setItem('mean-token', token);
+    localStorage.setItem('mean_token', token);
     this.token = token;
   }
 
   private getToken(): string {
     if (!this.token) {
-      this.token = localStorage.getItem('mean-token');
+      this.token = localStorage.getItem('mean_token');
     }
     return this.token;
   }
@@ -53,17 +35,37 @@ export class AuthenticationService {
     }
   }
 
+  // private saveUserToLocalStorage(userDetails: UserDetails) {
+  //   localStorage.setItem('user_id', userDetails._id);
+  //   localStorage.setItem('username', userDetails.name);
+  //   console.log(window.localStorage.getItem('is_admin'));
+  //   console.log(userDetails);
+  //   if (userDetails.isAdmin) {
+  //     console.log("IS ADMIN");
+  //     localStorage.setItem('is_admin', (userDetails.isAdmin).toString());
+  //   } else {
+  //     localStorage.setItem('is_admin', 'false');
+  //   }
+  // }
+
+  // private removeUserFromLocalStorage() {
+  //   window.localStorage.removeItem('user_id');
+  //   window.localStorage.removeItem('username');
+  //   window.localStorage.removeItem('is_admin');
+  // }
+
+
   public isLoggedIn(): boolean {
     const user = this.getUserDetails();
-    // console.log(user);
     if (user) {
+      // this.saveUserToLocalStorage(user);
       return user.exp > Date.now() / 1000;
     } else {
       return false;
     }
   }
 
-  public request(method: 'post' | 'get', type: 'login' | 'register' | 'profile' | 'post/list', user?: TokenPayload): Observable<any> {
+  public request(method: 'post' | 'get', type: 'login' | 'register' | 'profile' | 'post/list' | 'user/list', user?: TokenPayload): Observable<any> {
     let base;
 
     if (method === 'post') {
@@ -98,7 +100,8 @@ export class AuthenticationService {
 
   public logout(): void {
     this.token = '';
-    window.localStorage.removeItem('mean-token');
+    window.localStorage.removeItem('mean_token');
+    // this.removeUserFromLocalStorage();
     this.router.navigateByUrl('/');
   }
 }

@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 
 import { Post } from '../post.model';
 import { PostService } from '../post.service';
-import { AuthenticationService } from '../../auth';
+import { AuthenticationService, UserDetails } from '../../auth';
 import { DateFunctions } from 'src/app/shared/date.functions';
 
 @Component({
@@ -24,8 +24,11 @@ export class PostCreateComponent implements OnInit {
 
   @Input()
   private post: Post = { user_id: "", title: "", content: "", created_utc: "" };
-  // private post: any;
+  @Input()
   private userId: String = "";
+
+  // private post: any;
+  private username: String = "";
   // private post_id: String;
 
   private isEdit: boolean = false;
@@ -41,8 +44,14 @@ export class PostCreateComponent implements OnInit {
     }
 
     if (this.authService.isLoggedIn && !this.isEdit) {
-      this.userId = this.authService.getUserDetails()._id;
+
+      let details: UserDetails = this.authService.getUserDetails();
+
+      this.userId = details._id;
+      this.username = details.name;
+
       this.post.user_id = this.userId;
+      this.post.username = this.username;
     }
   }
 

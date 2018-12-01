@@ -9,11 +9,14 @@ import {
     MatSelectModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTabsModule,
+    MatDialogModule,
 } from '@angular/material';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @NgModule({
-    declarations: [],
+    declarations: [DeleteDialogComponent],
     imports: [
         MatButtonModule,
         MatToolbarModule,
@@ -23,7 +26,9 @@ import {
         MatSelectModule,
         MatProgressSpinnerModule,
         MatExpansionModule,
-        MatGridListModule
+        MatGridListModule,
+        MatTabsModule,
+        MatDialogModule
     ],
     exports: [
         MatButtonModule,
@@ -34,7 +39,9 @@ import {
         MatSelectModule,
         MatProgressSpinnerModule,
         MatExpansionModule,
-        MatGridListModule
+        MatGridListModule,
+        MatTabsModule,
+        MatDialogModule
     ]
 })
 

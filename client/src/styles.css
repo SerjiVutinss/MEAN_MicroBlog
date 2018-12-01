@@ -8,7 +8,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .centre {
-    max-width: 400px;
+    max-width: 800px;;
     margin-left: auto;
     margin-right: auto;
+}
+
+.header {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.card {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

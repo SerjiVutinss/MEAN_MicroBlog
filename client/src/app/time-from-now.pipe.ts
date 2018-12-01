@@ -67,6 +67,15 @@ export class TimeFromNowPipe implements PipeTransform {
           retVal.units = "hrs";
         }
         retVal.value = deltaHours;
+      } else {
+        // move to days
+        let deltaDays = Math.round(deltaHours / 24);
+        if (deltaDays == 1) {
+          retVal.units = "day";
+        } else {
+          retVal.units = "days";
+        }
+        retVal.value = deltaDays;
       }
     }
 

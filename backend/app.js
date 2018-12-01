@@ -29,7 +29,8 @@ require('./config/passport');
 var app = express();
 // Bring in the routes for the API
 var indexRouter = require('./routes/index');
-var postRouter = require('./routes/post.routes')
+var postRouter = require('./routes/post.routes');
+var userRouter = require('./routes/user.routes');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -43,6 +44,7 @@ app.use(passport.initialize());
 // Use the API routes when path starts with /api
 app.use('/api', indexRouter);
 app.use('/api/post', postRouter);
+app.use('/api/user', userRouter);
 
 console.log("API up and running");
 

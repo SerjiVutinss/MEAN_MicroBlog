@@ -31,6 +31,7 @@ exports.create_post = function (req, res) {
     // res.send('NOT IMPLEMENTED: Post create POST');
     PostModel.create({
         user_id: req.body.user_id,
+        username: req.body.username,
         title: req.body.title,
         content: req.body.content,
         created_utc: req.body.created_utc

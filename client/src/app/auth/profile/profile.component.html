@@ -1,22 +1,32 @@
-<mat-card class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Details for: {{ userDetails?.name }}</mat-card-title>
-    <mat-card-subtitle>{{ userDetails?.email }}</mat-card-subtitle>
-    <mat-card-subtitle>Admin: {{ userDetails?.isAdmin }}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
+<mat-card>
+  <mat-tab-group [selectedIndex]="selectedTabIndex" (selectedTabChange)="onTabChange($event)">
 
-    <mat-spinner *ngIf="!isLoaded"></mat-spinner>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button routerLink="/post/create">New Post</button>
-    <!-- <button mat-button>BACK</button> -->
-  </mat-card-actions>
+    <mat-tab label="My Posts">
+      <app-post-user-list *ngIf="detailsLoaded" [userDetails]="userDetails"></app-post-user-list>
+    </mat-tab>
+
+    <mat-tab label="All Posts">
+      <app-post-list *ngIf="detailsLoaded" [userDetails]="userDetails" [showAll]="true"></app-post-list>
+    </mat-tab>
+
+    <mat-tab label="Users" *ngIf="userDetails?.isAdmin">
+      <app-user-list (isLoaded)='onUsersLoaded($event)'></app-user-list>
+    </mat-tab>
+
+    <mat-tab label="Details">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>Details for: {{ userDetails?.name }}</mat-card-title>
+          <mat-card-content>
+            <mat-card-subtitle>{{ userDetails?.email }}</mat-card-subtitle>
+            <mat-card-subtitle>Admin: {{ userDetails?.isAdmin }}</mat-card-subtitle>
+          </mat-card-content>
+        </mat-card-header>
+        <mat-card-actions>
+        </mat-card-actions>
+      </mat-card>
+    </mat-tab>
+
+  </mat-tab-group>
 </mat-card>
-
-<div *ngIf="isAdmin">
-  <!-- View Users -->
-</div>
-
-<app-post-list *ngIf="isLoaded" [userDetails]="userDetails"></app-post-list>

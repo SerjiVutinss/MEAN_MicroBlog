@@ -18,13 +18,17 @@ import {
   AuthGuardService,
   LoginComponent,
   ProfileComponent,
-  RegisterComponent
+  RegisterComponent,
+  UserListComponent
 } from './auth';
 
 // Post components
 import {
   PostCreateComponent,
-  PostListComponent
+  PostListComponent,
+  PostCreateDialogComponent,
+  PostEditDialogComponent,
+  PostUserListComponent
 } from './posts';
 
 // Reddit components
@@ -39,6 +43,7 @@ import { DatePipe } from './shared/pipes/date.pipe';
 // Import all of our routes to pass to the router
 import { routes } from './app.routes';
 import { TimeFromNowPipe } from './time-from-now.pipe';
+import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.component';
 
 
 @NgModule({
@@ -53,6 +58,10 @@ import { TimeFromNowPipe } from './time-from-now.pipe';
     RedditListComponent,
     DatePipe,
     TimeFromNowPipe,
+    UserListComponent,
+    PostCreateDialogComponent,
+    PostEditDialogComponent,
+    PostUserListComponent
 
   ],
   imports: [
@@ -68,6 +77,7 @@ import { TimeFromNowPipe } from './time-from-now.pipe';
     AuthenticationService,
     AuthGuardService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DeleteDialogComponent, PostCreateDialogComponent]
 })
 export class AppModule { }

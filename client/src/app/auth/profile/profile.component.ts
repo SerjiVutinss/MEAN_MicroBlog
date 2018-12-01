@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 
-import { AuthenticationService, UserDetails } from '../authentication.service';
+import { AuthenticationService } from '../authentication.service';
+import { UserDetails } from '..';
+import { MatDialog, MatTabChangeEvent } from '@angular/material';
 
 @Component({
   templateUrl: './profile.component.html'
@@ -8,16 +10,33 @@ import { AuthenticationService, UserDetails } from '../authentication.service';
 export class ProfileComponent {
   userDetails: UserDetails;
 
-  private isLoaded: boolean = true;
-  constructor(private auth: AuthenticationService) { }
+  private detailsLoaded: boolean = false;
+  private usersLoaded: boolean = false;
+  private selectedTabIndex: number = 0;
+
+  constructor(
+    private auth: AuthenticationService
+  ) { }
+
 
   ngOnInit() {
-    this.isLoaded = false;
     this.auth.profile().subscribe(user => {
       this.userDetails = user;
     }, (err) => {
       console.error(err);
     },
-      () => this.isLoaded = true);
+      () => { this.detailsLoaded = true; });
+  }
+
+  onTabChange(event: MatTabChangeEvent) {
+    this.selectedTabIndex = event.index;
+  }
+
+  onUsersLoaded(e) {
+    this.usersLoaded = true;
+  }
+
+  isFullyLoaded(): boolean {
+    return this.detailsLoaded && this.usersLoaded;
   }
 }
