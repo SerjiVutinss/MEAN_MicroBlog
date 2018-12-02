@@ -24,7 +24,7 @@ import {
 
 // Post components
 import {
-  PostCreateComponent,
+  PostComponent,
   PostListComponent,
   PostCreateDialogComponent,
   PostEditDialogComponent,
@@ -33,7 +33,6 @@ import {
 
 // Comment components
 import {
-  CommentCreateComponent,
   CommentListComponent,
   CommentCreateDialogComponent,
   CommentEditDialogComponent,
@@ -63,21 +62,21 @@ import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.comp
     ProfileComponent,
     HomeComponent,
     RegisterComponent,
-    PostCreateComponent,
-    PostListComponent,
     RedditListComponent,
     DatePipe,
     TimeFromNowPipe,
     UserListComponent,
+    PostComponent,
+    PostListComponent,
     PostCreateDialogComponent,
     PostEditDialogComponent,
     PostUserListComponent,
-    CommentCreateComponent,
     CommentCreateDialogComponent,
     CommentListComponent,
     CommentEditDialogComponent
 
   ],
+
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -87,11 +86,14 @@ import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.comp
     JsonpModule,
     MaterialModule,
   ],
+
   providers: [
     AuthenticationService,
     AuthGuardService
   ],
+
   bootstrap: [AppComponent],
+
   entryComponents: [
     DeleteDialogComponent,
     PostCreateDialogComponent,

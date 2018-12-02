@@ -1,7 +1,9 @@
 import { Post } from './post.model';
 import { PostService } from './post.service';
 
-import { PostCreateComponent } from './post-create/post-create.component';
+import { PostComponent } from './post/post.component';
+
+// import { PostCreateComponent } from './post-create/post-create.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { PostUserListComponent } from './post-list/post-user-list.component';
 
@@ -11,9 +13,9 @@ import { PostEditDialogComponent } from './post-edit-dialog/post-edit-dialog.com
 export {
     Post,
     PostService,
-    PostCreateComponent,
     PostListComponent,
     PostCreateDialogComponent,
     PostEditDialogComponent,
-    PostUserListComponent
+    PostUserListComponent,
+    PostComponent
 }

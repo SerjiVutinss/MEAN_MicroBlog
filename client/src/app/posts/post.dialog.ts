@@ -4,7 +4,7 @@ import { Post } from './post.model';
 import { PostService } from './post.service';
 
 @Component({})
-export class PostDialogComponent implements OnInit {
+export abstract class PostDialogComponent implements OnInit {
 
     protected post: Post = { user_id: "", title: "", content: "", created_utc: "", username: "" };
 
