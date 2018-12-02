@@ -11,9 +11,10 @@ import {
     PostCreateComponent
 } from "./posts";
 import { RedditListComponent } from "./reddit";
+import { CommentListComponent, CommentCreateComponent } from "./comments";
 
 export const routes: Routes = [
-    
+
     // default route
     { path: '', component: HomeComponent },
 
@@ -26,6 +27,11 @@ export const routes: Routes = [
     { path: 'post/list', component: PostListComponent },
     { path: 'post/create', component: PostCreateComponent },
     { path: 'post/edit/:id', component: PostCreateComponent },
+
+    // comment routes
+    { path: 'comment/list', component: CommentListComponent },
+    { path: 'comment/create', component: CommentCreateComponent },
+    { path: 'comment/edit/:id', component: CommentCreateComponent },
 
     // reddit routes
     { path: 'reddit-list', component: RedditListComponent }

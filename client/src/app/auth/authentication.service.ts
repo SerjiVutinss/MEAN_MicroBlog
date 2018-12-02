@@ -65,6 +65,14 @@ export class AuthenticationService {
     }
   }
 
+  public isAdmin(): boolean {
+    const user = this.getUserDetails();
+    if (user) {
+      return user.isAdmin && user.exp > Date.now() / 1000;
+    }
+    return false;
+  }
+
   public request(method: 'post' | 'get', type: 'login' | 'register' | 'profile' | 'post/list' | 'user/list', user?: TokenPayload): Observable<any> {
     let base;
 

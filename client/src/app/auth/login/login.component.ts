@@ -22,7 +22,12 @@ export class LoginComponent {
     this.auth.login(this.credentials).subscribe(() => {
       this.router.navigateByUrl('/profile');
     }, (err) => {
-      console.error(err);
+      if (err.status === 401) {
+        this.isSubmitted = true
+        console.log("DENIED!!!");
+      } else {
+        console.error(err);
+      }
     },
       () => this.isSubmitted = true
     );

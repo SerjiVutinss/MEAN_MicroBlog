@@ -17,18 +17,23 @@ export class UserListComponent implements OnInit {
     this.getUsers();
   }
 
-  // get all users from API
+  /**
+   * get all users from API
+   */
   getUsers() {
     this.userService.getUsers().subscribe(
       (data) => { this.users = data },
       (err) => { },
       () => {
+        console.log("Emit: users loaded <user-list>");
         this.usersLoaded.emit();
-        console.log("USERS LOADED");
       });
   }
 
-  // delete user, then reload users from API
+  /**
+   * delete user, then reload users from API
+   * @param id id of user to be deleted
+   */
   onDelete(id: any) {
     this.userService.deleteUser(id).subscribe(
       null,
@@ -36,5 +41,4 @@ export class UserListComponent implements OnInit {
       () => this.getUsers()
     );
   }
-
 }

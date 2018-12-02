@@ -51,9 +51,9 @@ export class TimeFromNowPipe implements PipeTransform {
     if (deltaMins < minsPerHour) {
       // if it
       if (deltaMins == 1) {
-        retVal.units = "min";
+        retVal.units = " minute";
       } else {
-        retVal.units = "mins";
+        retVal.units = " minutes";
       }
       retVal.value = deltaMins;
       // we are done, exit this if statement
@@ -62,18 +62,18 @@ export class TimeFromNowPipe implements PipeTransform {
       let deltaHours = Math.round(deltaMins / minsPerHour);
       if (deltaHours < 24) {
         if (deltaHours == 1) {
-          retVal.units = "hr";
+          retVal.units = " hour";
         } else {
-          retVal.units = "hrs";
+          retVal.units = " hours";
         }
         retVal.value = deltaHours;
       } else {
         // move to days
         let deltaDays = Math.round(deltaHours / 24);
         if (deltaDays == 1) {
-          retVal.units = "day";
+          retVal.units = " day";
         } else {
-          retVal.units = "days";
+          retVal.units = " days";
         }
         retVal.value = deltaDays;
       }

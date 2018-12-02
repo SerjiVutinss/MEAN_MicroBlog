@@ -1,25 +1,41 @@
 <div class="centre">
-  <mat-card class="card" *ngIf="userDetails">
+
+  <mat-card class="card" *ngIf="auth.isLoggedIn()">
     <mat-card-actions>
-      <button mat-button color="primary" (click)="openCreateDialog()">New Post</button>
+      <button mat-button color="primary" (click)="newPostDialog()">New Post</button>
     </mat-card-actions>
   </mat-card>
 
   <mat-card class="card" *ngFor="let p of posts">
+
     <mat-card-header>
-      <h2>{{ p.title }}</h2>
+      <mat-card-title>{{ p.title }}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
+
       <p>{{ p.content }}</p>
-      <pre> by: {{ p.username }} on {{ p.created_utc | dateFromUTC | date: 'short' }}
-      ({{ p.created_utc | timeFromNow }})
-    </pre>
+
+      <ul><i>
+          <span>Posted by: </span>
+          <span *ngIf="!isUserPost(p.user_id)">{{ p.username }}</span>
+          <span *ngIf="isUserPost(p.user_id)"><b>{{ p.username }}</b></span>
+          <span>
+            on {{ p.created_utc | dateFromUTC | date: 'short' }}
+            ({{ p.created_utc | timeFromNow }})
+          </span></i>
+        <br>
+        <span *ngIf="p.updated_utc"><i>Last updated: {{ p.updated_utc | dateFromUTC | date: 'short' }}
+            ({{ p.updated_utc | timeFromNow }})</i></span>
+      </ul>
     </mat-card-content>
+
     <mat-card-actions>
-      <div *ngIf="userDetails?.isAdmin || isUserData">
-        <button mat-button color="accent" [routerLink]="['/post/edit', p._id]">Edit</button>
-        <button mat-button color="warn" (click)="openDialog(p._id)">Delete</button>
+      <div *ngIf="auth.isAdmin() || isUserPost(p.user_id)">
+        <!-- <button mat-button color="accent" [routerLink]="['/post/edit', p._id]">Edit</button> -->
+        <button mat-button color="warn" (click)="editDialog(p)">Edit</button>
+        <button mat-button color="warn" (click)="deleteDialog(p._id)">Delete</button>
       </div>
     </mat-card-actions>
+
   </mat-card>
 </div>

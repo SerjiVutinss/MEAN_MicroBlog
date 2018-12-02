@@ -1,19 +1,20 @@
 <mat-card>
+  
   <mat-tab-group [selectedIndex]="selectedTabIndex" (selectedTabChange)="onTabChange($event)">
 
     <mat-tab label="My Posts">
-      <app-post-user-list *ngIf="detailsLoaded" [userDetails]="userDetails"></app-post-user-list>
+      <app-post-user-list *ngIf="detailsLoaded"></app-post-user-list>
     </mat-tab>
 
-    <mat-tab label="All Posts">
-      <app-post-list *ngIf="detailsLoaded" [userDetails]="userDetails" [showAll]="true"></app-post-list>
+    <mat-tab label="All Posts" *ngIf="auth.isAdmin()">
+      <app-post-list *ngIf="detailsLoaded" [showAll]="true"></app-post-list>
     </mat-tab>
 
-    <mat-tab label="Users" *ngIf="userDetails?.isAdmin">
+    <mat-tab label="Users" *ngIf="auth.isAdmin()">
       <app-user-list (isLoaded)='onUsersLoaded($event)'></app-user-list>
     </mat-tab>
 
-    <mat-tab label="Details">
+    <mat-tab label="Details" *ngIf="detailsLoaded">
       <mat-card class="example-card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
@@ -29,4 +30,5 @@
     </mat-tab>
 
   </mat-tab-group>
+
 </mat-card>

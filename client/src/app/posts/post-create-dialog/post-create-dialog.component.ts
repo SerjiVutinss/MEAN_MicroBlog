@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Post } from '../post.model';
 import { PostService } from '../post.service';
 import { DateFunctions } from 'src/app/shared/date.functions';
+import { AuthenticationService } from 'src/app/auth';
 
 @Component({
   selector: 'app-post-create-dialog',
@@ -11,29 +12,23 @@ import { DateFunctions } from 'src/app/shared/date.functions';
 })
 export class PostCreateDialogComponent implements OnInit {
 
-  private post: Post = { user_id: "", title: "", content: "", created_utc: "", username: "" };
+  protected post: Post = { user_id: "", title: "", content: "", created_utc: "", username: "" };
+
   constructor(
-    public dialogRef: MatDialogRef<PostCreateDialogComponent>,
+    protected postService: PostService,
+    public dialogRef: MatDialogRef<any>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private postService: PostService
+    private auth: AuthenticationService
   ) { }
 
   ngOnInit() {
-    this.post.user_id = this.data.userDetails._id;
-    this.post.username = this.data.userDetails.name;
+    let userDetails = this.auth.getUserDetails();
+    this.post.user_id = userDetails._id;
+    this.post.username = userDetails.name;
   }
 
   onPostCreate() {
-    this.post.created_utc = DateFunctions.getCurrentUTCEpoch();
     this.postService.addPost(this.post).subscribe();
-    this.dialogRef.close();
-  }
-
-  goBack() {
-    this.dialogRef.close();
-  }
-
-  onNoClick(): void {
     this.dialogRef.close();
   }
 }

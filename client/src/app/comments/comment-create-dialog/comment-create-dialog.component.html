@@ -1,31 +1,31 @@
-<h1 mat-dialog-title>Edit Post</h1>
+<h1 mat-dialog-title>New Post</h1>
 <div mat-dialog-content>
   <form>
     <table class="example-full-width" cellspacing="0">
-      <!-- <tr>
-        <mat-form-field class="example-full-width">
-          <input matInput disabled="true" name="user" placeholder="UserID" [(ngModel)]="post.user_id">
-        </mat-form-field>
-      </tr> -->
       <tr>
         <mat-form-field class="example-full-width">
-          <input matInput disabled="true" name="post_username" placeholder="Username" [(ngModel)]="post.username">
+          <input matInput disabled="true" name="user" placeholder="UserID" [(ngModel)]="comment.user_id">
         </mat-form-field>
       </tr>
       <tr>
         <mat-form-field class="example-full-width">
-          <input matInput name="title" placeholder="Title" [(ngModel)]="post.title">
+          <input matInput disabled="true" name="c_username" placeholder="Username" [(ngModel)]="comment.username">
         </mat-form-field>
       </tr>
       <tr>
         <mat-form-field class="example-full-width">
-          <textarea matInput type="text" name="content" placeholder="Content..." [(ngModel)]="post.content"></textarea>
+          <input matInput name="title" placeholder="Title" [(ngModel)]="comment.title">
+        </mat-form-field>
+      </tr>
+      <tr>
+        <mat-form-field class="example-full-width">
+          <textarea matInput type="text" name="content" placeholder="Content..." [(ngModel)]="comment.content"></textarea>
         </mat-form-field>
       </tr>
     </table>
   </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-stroked-button (click)="onPostUpdate()">Post</button>
+  <button mat-stroked-button (click)="onCommentCreate()">Post</button>
   <button mat-stroked-button (click)="goBack()">Back</button>
 </div>

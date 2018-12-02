@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Post } from './post.model';
 
 import { AuthenticationService } from '../auth';
+import { DateFunctions } from '../shared/date.functions';
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +26,12 @@ export class PostService {
   }
 
   addPost(post: Post): Observable<any> {
+    post.created_utc = DateFunctions.getCurrentUTCEpoch();
     return this.http.post('/api/post', post, { responseType: 'text' });
   }
 
   updatePost(id: String, post: Post): Observable<any> {
+    post.updated_utc = DateFunctions.getCurrentUTCEpoch();
     return this.http.put("/api/post/" + id, post, { responseType: 'text' });
   }
 

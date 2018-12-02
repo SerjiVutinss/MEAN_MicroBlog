@@ -8,7 +8,7 @@ import { MatDialog, MatTabChangeEvent } from '@angular/material';
   templateUrl: './profile.component.html'
 })
 export class ProfileComponent {
-  userDetails: UserDetails;
+  private userDetails: UserDetails;
 
   private detailsLoaded: boolean = false;
   private usersLoaded: boolean = false;
@@ -20,6 +20,10 @@ export class ProfileComponent {
 
 
   ngOnInit() {
+    this.getUser();
+  }
+
+  private getUser() {
     this.auth.profile().subscribe(user => {
       this.userDetails = user;
     }, (err) => {

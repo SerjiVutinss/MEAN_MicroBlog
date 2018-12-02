@@ -2,10 +2,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Post } from '../post.model';
 import { PostService } from '../post.service';
-import { UserDetails } from 'src/app/auth';
+import { UserDetails, AuthenticationService } from 'src/app/auth';
 import { MatDialog } from '@angular/material';
 import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialog.component';
 import { PostCreateDialogComponent } from '../post-create-dialog/post-create-dialog.component';
+import { PostEditDialogComponent } from '../post-edit-dialog/post-edit-dialog.component';
 
 @Component({
   selector: 'app-post-list',
@@ -14,18 +15,14 @@ import { PostCreateDialogComponent } from '../post-create-dialog/post-create-dia
 })
 export class PostListComponent implements OnInit {
 
-  // TODO: better to get these from AuthService?
-  @Input()
-  protected userDetails: UserDetails;
   @Input()
   showAll: boolean;
 
   protected posts: Post[] = [];
-  protected isUserData: boolean = false;
-  
   @Output() posted = new EventEmitter();
 
   constructor(
+    protected auth: AuthenticationService,
     protected postService: PostService,
     protected dialog: MatDialog
   ) { }
@@ -35,9 +32,21 @@ export class PostListComponent implements OnInit {
   }
 
   getPosts() {
+    this.getAllPosts();
+  }
+
+  getAllPosts() {
     this.postService.getPosts().subscribe(
       (data) => this.posts = data
     );
+  }
+
+  private isUserPost(post_user_id: string): boolean {
+    let belongsToUser: boolean = false;
+    if (this.auth.getUserDetails()) {
+      belongsToUser = post_user_id === this.auth.getUserDetails()._id;
+    }
+    return belongsToUser;
   }
 
   onDelete(id: String) {
@@ -46,7 +55,33 @@ export class PostListComponent implements OnInit {
     })
   }
 
-  openDialog(id: String): void {
+
+  newPostDialog() {
+    const dialogRef = this.dialog.open(PostCreateDialogComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getPosts();
+      this.posted.emit();
+    })
+  }
+
+  editDialog(post: Post) {
+    const dialogRef = this.dialog.open(PostEditDialogComponent, {
+      width: '400px',
+      data: {
+        post: post
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getPosts();
+      this.posted.emit();
+    })
+  }
+
+  deleteDialog(id: String): void {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       width: '250px',
     });
@@ -55,20 +90,6 @@ export class PostListComponent implements OnInit {
       console.log('The dialog was closed: ' + result);
       if (result) this.onDelete(id);
     });
-  }
-
-  openCreateDialog() {
-    const dialogRef = this.dialog.open(PostCreateDialogComponent, {
-      width: '400px',
-      data: {
-        userDetails: this.userDetails
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.getPosts();
-      this.posted.emit();
-    })
   }
 
   // onSearchChange(value: string) {

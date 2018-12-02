@@ -31,6 +31,16 @@ import {
   PostUserListComponent
 } from './posts';
 
+// Comment components
+import {
+  CommentCreateComponent,
+  CommentListComponent,
+  CommentCreateDialogComponent,
+  CommentEditDialogComponent,
+  CommentUserListComponent
+} from './comments';
+
+
 // Reddit components
 import {
   RedditListComponent
@@ -61,7 +71,11 @@ import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.comp
     UserListComponent,
     PostCreateDialogComponent,
     PostEditDialogComponent,
-    PostUserListComponent
+    PostUserListComponent,
+    CommentCreateComponent,
+    CommentCreateDialogComponent,
+    CommentListComponent,
+    CommentEditDialogComponent
 
   ],
   imports: [
@@ -78,6 +92,11 @@ import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.comp
     AuthGuardService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DeleteDialogComponent, PostCreateDialogComponent]
+  entryComponents: [
+    DeleteDialogComponent,
+    PostCreateDialogComponent,
+    PostEditDialogComponent,
+    CommentCreateDialogComponent
+  ]
 })
 export class AppModule { }
