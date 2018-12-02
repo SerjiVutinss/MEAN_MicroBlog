@@ -10,12 +10,7 @@
 
     <mat-card-header>
       <mat-card-title>{{ p.title }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-
-      <p>{{ p.content }}</p>
-
-      <ul><i>
+      <mat-card-subtitle><i>
           <span>Posted by: </span>
           <span *ngIf="!isUserPost(p.user_id)">{{ p.username }}</span>
           <span *ngIf="isUserPost(p.user_id)"><b>{{ p.username }}</b></span>
@@ -23,10 +18,16 @@
             on {{ p.created_utc | dateFromUTC | date: 'short' }}
             ({{ p.created_utc | timeFromNow }})
           </span></i>
-        <br>
-        <span *ngIf="p.updated_utc"><i>Last updated: {{ p.updated_utc | dateFromUTC | date: 'short' }}
-            ({{ p.updated_utc | timeFromNow }})</i></span>
-      </ul>
+        <div>
+          <span *ngIf="p.updated_utc"><i>Last updated: {{ p.updated_utc | dateFromUTC | date: 'short' }}
+              ({{ p.updated_utc | timeFromNow }})</i></span>
+        </div>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+      <p>{{ p.content }}</p>
+
     </mat-card-content>
 
     <mat-card-actions>
