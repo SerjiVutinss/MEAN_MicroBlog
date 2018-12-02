@@ -13,7 +13,7 @@ import { CommentDialogComponent } from '../comment.dialog';
 })
 export class CommentCreateDialogComponent extends CommentDialogComponent implements OnInit {
 
-  protected comment: Comment = { user_id: "", post_id: "", title: "", content: "", created_utc: "", username: "" };
+  protected comment: Comment = { user_id: "", post_id: "", content: "", created_utc: "", username: "" };
 
   constructor(
     protected commentService: CommentService,
@@ -26,14 +26,12 @@ export class CommentCreateDialogComponent extends CommentDialogComponent impleme
 
   ngOnInit() {
     let userDetails = this.auth.getUserDetails();
-    console.log(this.data);
     this.comment.post_id = this.data.post_id;
     this.comment.user_id = userDetails._id;
     this.comment.username = userDetails.name;
   }
 
   onCommentCreate() {
-    console.log(this.comment);
     this.commentService.addComment(this.comment).subscribe();
     this.dialogRef.close();
   }

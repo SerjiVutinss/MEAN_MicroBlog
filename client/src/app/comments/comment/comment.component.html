@@ -2,7 +2,7 @@
 
   <mat-card-header>
     <mat-card-subtitle><i>
-        <span>Commented by: </span>
+        <span>Comment by: </span>
         <span *ngIf="!isUserComment(comment.user_id)">{{ comment.username }}</span>
         <span *ngIf="isUserComment(comment.user_id)"><b>{{ comment.username }}</b></span>
         <span>
