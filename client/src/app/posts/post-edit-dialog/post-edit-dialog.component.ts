@@ -28,6 +28,6 @@ export class PostEditDialogComponent extends PostDialogComponent implements OnIn
 
   onPostUpdate() {
     this.postService.updatePost(this.post._id, this.post).subscribe();
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 }

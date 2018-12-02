@@ -6,6 +6,11 @@ import { AuthenticationService } from 'src/app/auth';
 import { MatDialog } from '@angular/material';
 import { PostCreateDialogComponent } from '../post-create-dialog/post-create-dialog.component';
 
+/**
+ * Component used to display a number of post components in a list
+ * 
+ * 
+ */
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
@@ -28,11 +33,17 @@ export class PostListComponent implements OnInit {
     this.getPosts();
   }
 
-  getPosts() {
+  /**
+   * Get the posts for this component
+   */
+  protected getPosts() {
     this.getAllPosts();
   }
 
-  getAllPosts() {
+  /**
+   * Get all of the posts in the database
+   */
+  private getAllPosts() {
     this.postsLoading = true;
     this.postService.getPosts().subscribe(
       (data) => this.posts = data,
@@ -41,11 +52,33 @@ export class PostListComponent implements OnInit {
     );
   }
 
-  newPostDialog() {
+  /**
+   * Opens a new post dialog
+   * 
+   * @return emits posts_changed
+   */
+  protected newPostDialog() {
     const dialogRef = this.dialog.open(PostCreateDialogComponent, {
       width: '400px'
     });
-    dialogRef.afterClosed().subscribe(
-      () => { this.getPosts(); });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // only emit if the dialog returned true
+      if (result) {
+        // used to cause the parent (list) component to update its data
+        this.getPosts();
+      }
+    });
   }
+
+  // newPostDialog() {
+  //   const dialogRef = this.dialog.open(PostCreateDialogComponent, {
+  //     width: '400px'
+  //   });
+  //   dialogRef.afterClosed().subscribe(
+  //     (result) => {
+  //       if (result) this.getPosts();
+  //     });
+  // }
+
 }

@@ -1,10 +1,17 @@
+<!-- displays a post, including the functionality to edit or delete -->
 <mat-card class="card">
 
   <mat-card-header>
+
+    <!-- if input parameter disableLink exists, do not allow navigating -->
     <mat-card-title *ngIf="disableLink">{{ post.title }}</mat-card-title>
     <mat-card-title *ngIf="!disableLink" [routerLink]="['/post', post._id, 'comments']">{{ post.title }}</mat-card-title>
+    
+    <!-- details -->
     <mat-card-subtitle><i>
         <span>Posted by: </span>
+
+        <!-- make username bold if the post belongs to the current user -->
         <span *ngIf="!isUserPost(post.user_id)">{{ post.username }}</span>
         <span *ngIf="isUserPost(post.user_id)"><b>{{ post.username }}</b></span>
         <span>
@@ -17,12 +24,13 @@
       </div>
     </mat-card-subtitle>
   </mat-card-header>
+
+  <!-- body -->
   <mat-card-content>
-
     <p>{{ post.content }}</p>
-
   </mat-card-content>
 
+  <!-- actions -->
   <mat-card-actions>
     <div *ngIf="auth.isAdmin() || isUserPost(post.user_id)">
       <!-- <button mat-button color="accent" [routerLink]="['/post/edit', post._id]">Edit</button> -->

@@ -7,6 +7,22 @@ import { AuthenticationService } from 'src/app/auth';
 import { PostService } from '../post.service';
 import { MatDialog } from '@angular/material';
 
+/**
+ * Component which takes a post object as an input and displays it.
+ * 
+ * It also contains functionality to open the create and edit dialogs as well
+ * as navigating to the post-comments component
+ * 
+ * @param post Input object for this component (required). The component binds
+ * to this object
+ * 
+ * @param disableLink Input parameter (optional).
+ * Determines whether or not clicking on a post title will navigate to the 
+ * post-comment component (false) or not (true)
+ * 
+ * @return posts_changed - Event Emitter emits when an operation has been
+ * performed on a post, i.e. create, update, delete
+ */
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -14,10 +30,10 @@ import { MatDialog } from '@angular/material';
 })
 export class PostComponent implements OnInit {
 
-  @Input() post: Post;
-  @Input() disableLink: boolean;
+  @Input() post: Post;  // the component binds to this object
+  @Input() disableLink: boolean; // optional - disable navigation on title click
 
-  @Output() posts_changed = new EventEmitter();
+  @Output() posts_changed = new EventEmitter(); // emits when posts have changed
 
   constructor(
     protected auth: AuthenticationService,
@@ -27,6 +43,12 @@ export class PostComponent implements OnInit {
 
   ngOnInit() { }
 
+  /**
+   * Returns true if the post_user_id matches the user._id of the logged in user
+   * 
+   * @param post_user_id user_id of the post to check
+   * @return {boolean} did the ids match
+   */
   private isUserPost(post_user_id: string): boolean {
     if (this.auth.getUserDetails()) {
       return post_user_id === this.auth.getUserDetails()._id;
@@ -34,23 +56,31 @@ export class PostComponent implements OnInit {
     return false;
   }
 
-  // private onDelete(id: String) {
-  //   this.postService.deletePost(id).subscribe(() => {
-  //     this.posts_changed.emit();
-  //   })
-  // }
-
-
+  /**
+   * Opens a new post dialog
+   * 
+   * @return emits posts_changed
+   */
   private newPostDialog() {
     const dialogRef = this.dialog.open(PostCreateDialogComponent, {
       width: '400px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.posts_changed.emit();
-    })
+      // only emit if the dialog returned true
+      if (result) {
+        // used to cause the parent (list) component to update its data
+        this.posts_changed.emit();
+      }
+    });
   }
 
+  /**
+   * Opens an edit post dialog
+   * 
+   * @param {Post} post - the post to be edited, it is bound to the dialog form
+   * @return emits posts_changed
+   */
   private editDialog(post: Post) {
     const dialogRef = this.dialog.open(PostEditDialogComponent, {
       width: '400px',
@@ -59,18 +89,30 @@ export class PostComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.posts_changed.emit();
+      // only emit if the dialog returned true
+      if (result) {
+        // used to cause the parent (list) component to update its data
+        this.posts_changed.emit();
+      }
     })
   }
 
-  private deleteDialog(id: String): void {
+  /**
+   * Opens a delete-dialog component - if user clicks Yes on the dialog, the post
+   * with id of post_id will be deleted.  On dialog cancel (No), no operation will
+   * be performed
+   * 
+   * @param {string} id - the id of the post to be deleted
+   * @return emits posts_changed
+   */
+  private deleteDialog(post_id: String): void {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       width: '250px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.postService.deletePost(id).subscribe(() => {
+      if (result) { // if Yes was clicked (dialog was confirmed)
+        this.postService.deletePost(post_id).subscribe(() => {
           this.posts_changed.emit();
         });
       }

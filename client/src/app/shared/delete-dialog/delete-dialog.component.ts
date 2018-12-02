@@ -13,14 +13,19 @@ export class DeleteDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: boolean
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
-  onOkClick() {
-    // this.dialogRef.close();
-  }
-
+  /**
+   * Cancel, return nothing
+   */
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  /**
+   * Confirm, return true as result
+   */
+  onDelete() {
+    this.dialogRef.close(true);
   }
 }

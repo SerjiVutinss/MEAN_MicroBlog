@@ -52,7 +52,7 @@ import { DatePipe } from './shared/pipes/date.pipe';
 
 // Import all of our routes to pass to the router
 import { routes } from './app.routes';
-import { TimeFromNowPipe } from './time-from-now.pipe';
+import { TimeFromNowPipe } from './shared/pipes/time-from-now.pipe';
 import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.component';
 import { PostsCommentsComponent } from './posts-comments/posts-comments.component';
 

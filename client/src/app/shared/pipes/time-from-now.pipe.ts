@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { DateFunctions } from './shared/date.functions';
+import { DateFunctions } from '../date.functions';
 
 @Pipe({
   name: 'timeFromNow'

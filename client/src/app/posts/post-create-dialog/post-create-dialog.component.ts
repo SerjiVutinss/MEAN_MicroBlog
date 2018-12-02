@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Post } from '../post.model';
 import { PostService } from '../post.service';
-import { DateFunctions } from 'src/app/shared/date.functions';
 import { AuthenticationService } from 'src/app/auth';
 import { PostDialogComponent } from '../post.dialog';
 
@@ -13,7 +12,7 @@ import { PostDialogComponent } from '../post.dialog';
 })
 export class PostCreateDialogComponent extends PostDialogComponent implements OnInit {
 
-  protected post: Post = { user_id: "", title: "", content: "", created_utc: "", username: "" };
+  // protected post: Post = { user_id: "", title: "", content: "", created_utc: "", username: "" };
 
   constructor(
     protected postService: PostService,
@@ -32,6 +31,6 @@ export class PostCreateDialogComponent extends PostDialogComponent implements On
 
   onPostCreate() {
     this.postService.addPost(this.post).subscribe();
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 }
