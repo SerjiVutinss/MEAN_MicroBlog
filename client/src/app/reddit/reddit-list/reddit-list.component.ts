@@ -14,7 +14,7 @@ export class RedditListComponent implements OnInit {
   constructor(private redditService: RedditService) { }
 
   ngOnInit() {
-    this.redditService.fetchPosts("/r/ireland", "top", 5).subscribe(
+    this.redditService.fetchPosts("/r/ireland", "top", 10).subscribe(
       (data) => this.redditPosts = data
     )
   }

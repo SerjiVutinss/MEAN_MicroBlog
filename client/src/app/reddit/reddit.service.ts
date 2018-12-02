@@ -18,7 +18,6 @@ export class RedditService {
 
     let qrySort = "/hot";
 
-    console.log("TECHING FROM REDDIT");
     let qryLimit: String = limit ? "&limit=" + limit : "";
     return this.jsonp.get("https://www.reddit.com" +
       subreddit +

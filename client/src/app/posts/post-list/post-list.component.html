@@ -1,4 +1,9 @@
-<div class="centre">
+<div class="centre mat-spinner" *ngIf="postsLoading">
+  <mat-spinner class="centre"></mat-spinner>
+</div>
+
+
+<div class="centre" *ngIf="!postsLoading">
 
   <mat-card class="card" *ngIf="auth.isLoggedIn()">
     <mat-card-actions>

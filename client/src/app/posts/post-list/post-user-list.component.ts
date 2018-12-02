@@ -28,8 +28,11 @@ export class PostUserListComponent extends PostListComponent implements OnInit {
   }
 
   getUserPosts() {
+    this.postsLoading = true;
     this.postService.getUserPosts(this.auth.getUserDetails()._id).subscribe(
-      (data) => this.posts = data
+      (data) => this.posts = data,
+      null,
+      () => this.postsLoading = false
     );
   }
 }

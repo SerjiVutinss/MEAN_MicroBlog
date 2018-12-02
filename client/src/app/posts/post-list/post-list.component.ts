@@ -16,6 +16,7 @@ export class PostListComponent implements OnInit {
   @Input() private showAll: boolean;
 
   protected posts: Post[] = [];
+  protected postsLoading: boolean = false;
 
   constructor(
     protected auth: AuthenticationService,
@@ -32,8 +33,11 @@ export class PostListComponent implements OnInit {
   }
 
   getAllPosts() {
+    this.postsLoading = true;
     this.postService.getPosts().subscribe(
-      (data) => this.posts = data
+      (data) => this.posts = data,
+      null,
+      () => this.postsLoading = false
     );
   }
 

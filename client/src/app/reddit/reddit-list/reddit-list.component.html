@@ -1,4 +1,4 @@
-<div class="">
+<div class="example-card">
   <mat-accordion>
     <mat-expansion-panel *ngFor="let r of redditPosts">
       <mat-expansion-panel-header>
@@ -10,8 +10,6 @@
       </mat-expansion-panel-header>
       <mat-card class="centre">
         <mat-card-header>
-          <!-- <img mat-card-avatar src="{{ r.thumbnail }}"> -->
-          <!-- <mat-card-subtitle>{{ r.url }}</mat-card-subtitle> -->
         </mat-card-header>
         <img mat-card-image src="{{ r.url }}" alt="Missing Photo">
         <mat-card-content>
