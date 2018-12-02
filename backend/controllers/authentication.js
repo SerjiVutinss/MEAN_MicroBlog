@@ -7,14 +7,10 @@ var sendJSONresponse = function (res, status, content) {
     res.json(content);
 };
 
+/**
+ * Register a new user
+ */
 module.exports.register = function (req, res) {
-
-    // if(!req.body.name || !req.body.email || !req.body.password) {
-    //   sendJSONresponse(res, 400, {
-    //     "message": "All fields required"
-    //   });
-    //   return;
-    // }
 
     var user = new User();
 
@@ -34,8 +30,14 @@ module.exports.register = function (req, res) {
 
 };
 
+/**
+ * Login a user
+ */
 module.exports.login = function (req, res) {
 
+    /**
+     * Disabling this for now
+     */
     // if(!req.body.email || !req.body.password) {
     //   sendJSONresponse(res, 400, {
     //     "message": "All fields required"
@@ -43,6 +45,7 @@ module.exports.login = function (req, res) {
     //   return;
     // }
 
+    // authenticate a user
     passport.authenticate('local', function (err, user, info) {
         var token;
 

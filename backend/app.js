@@ -21,9 +21,6 @@ require('./models/db.model');
 // Now you bring in the passport config
 require('./config/passport');
 
-// Now any other data?
-
-
 // End Advanced Setup
 
 var app = express();

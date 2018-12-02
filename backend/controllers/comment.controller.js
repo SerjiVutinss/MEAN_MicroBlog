@@ -1,20 +1,12 @@
 var CommentModel = require('../models/comment.model');
 
-exports.index = function (req, res) {
-    res.send('NOT IMPLEMENTED: Site Home Page');
-};
-
 exports.user_comments_get = function (req, res) {
-    // res.send("HELLO USER POSTS");
-    // var p = [{ title: "none found" }];
     CommentModel.find({ user_id: req.params.id }, function (err, data) {
         res.send(data);
     }).sort({ created_utc: -1 });
 }
 
 exports.post_comments_get = function (req, res) {
-    // res.send("HELLO USER POSTS");
-    // var p = [{ title: "none found" }];
     console.log(req.params.post_id);
     CommentModel.find({ post_id: req.params.id }, function (err, data) {
         res.send(data);
@@ -27,7 +19,7 @@ exports.list = function (req, res) {
     // TODO: look at additional route parameters
     CommentModel.find(function (err, data) {
         res.json(data);
-    });//.sort({ created_utc: -1 });
+    }).sort({ created_utc: -1 });
 };
 
 // Display detail page for a specific Comment.
@@ -38,15 +30,8 @@ exports.detail = function (req, res) {
         });
 };
 
-// Display Comment create form on GET.
-exports.create_get = function (req, res) {
-    res.send('NOT IMPLEMENTED: Comment create GET');
-};
-
 // Handle Comment create on POST.
 exports.create_post = function (req, res) {
-    // res.send('NOT IMPLEMENTED: Comment create POST');
-    console.log("API POST COMMENT");
     CommentModel.create({
         user_id: req.body.user_id,
         post_id: req.body.post_id,
@@ -59,7 +44,6 @@ exports.create_post = function (req, res) {
 
 // Display Comment delete form on GET.
 exports.delete_get = function (req, res) {
-    // res.send('NOT IMPLEMENTED: Comment delete GET');
     CommentModel.deleteOne({ _id: req.params.id },
         function (err, data) {
             if (err)
@@ -68,23 +52,8 @@ exports.delete_get = function (req, res) {
         })
 };
 
-// Handle Comment delete on POST.
-exports.delete_post = function (req, res) {
-    res.send('NOT IMPLEMENTED: Comment delete POST');
-};
-
-// Display Comment update form on GET.
-exports.update_get = function (req, res) {
-    res.send('NOT IMPLEMENTED: Comment update GET');
-};
-
 // Handle Comment update on POST.
 exports.update_post = function (req, res) {
-    // res.send('NOT IMPLEMENTED: Comment update POST');
-    console.log("Update POST" + req.params.id);
-    console.log(req.body.title);
-    console.log(req.body.content);
-
     CommentModel.findByIdAndUpdate(req.params.id, req.body,
         function (err, data) {
             res.send(data);

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+// schema for post
 var postSchema = new mongoose.Schema({
     user_id: {
         type: String,

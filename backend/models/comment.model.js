@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+// schema for comment
 var commentSchema = new mongoose.Schema({
     user_id: {
         type: String,
