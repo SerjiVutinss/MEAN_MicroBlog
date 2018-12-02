@@ -1,26 +1,71 @@
+<!-- <mat-card class="card">
+  <mat-card-header>
+    <mat-card-subtitle class="centre">Not registered? <button mat-button routerLink="/register">Register</button></mat-card-subtitle>
+  </mat-card-header>
+
+  <form class="login-form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+    <mat-card-content class="example-form">
+      <table class="example-full-width" cellspacing="0">
+
+      <form class="login-form">
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <mat-form-field class="example-full-width">
+              <input matInput required type="email" name="email" placeholder="Email:" [(ngModel)]="credentials.email">
+            </mat-form-field>
+          </tr>
+          <tr color="warn">
+            <mat-form-field class="example-full-width">
+              <input matInput required type="password" name="password" placeholder="Password" [(ngModel)]="credentials.password">
+            </mat-form-field>
+          </tr>
+          <tr>
+            {{ messageText}}
+          </tr>
+        </table>
+        <mat-spinner *ngIf="!isSubmitted"></mat-spinner>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-stroked-button id="loginButton" (click)="login()">Login</button>
+    </mat-card-actions>
+  </form>
+
+</mat-card>
+</div> -->
+
+
 <mat-card class="login-card">
   <mat-card-header>
     <mat-card-subtitle>Not registered? <button mat-button routerLink="/register">Register</button></mat-card-subtitle>
   </mat-card-header>
 
-  <mat-card-content>
-    <form class="login-form">
+  <form class="login-form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+    <mat-card-content>
       <table class="example-full-width" cellspacing="0">
         <tr>
           <mat-form-field class="example-full-width">
-            <input matInput name="email" placeholder="Email:" [(ngModel)]="credentials.email">
+            <input matInput required name="email" placeholder="Email:" [(ngModel)]="credentials.email" #email="ngModel">
           </mat-form-field>
         </tr>
         <tr>
           <mat-form-field class="example-full-width">
-            <input matInput type="password" name="password" placeholder="Password" [(ngModel)]="credentials.password">
+            <input matInput required type="password" name="password" placeholder="Password" [(ngModel)]="credentials.password"
+              #password="ngModel">
           </mat-form-field>
         </tr>
       </table>
-    </form>
+
+    </mat-card-content>
+
     <mat-spinner *ngIf="!isSubmitted"></mat-spinner>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-stroked-button (click)="login()">Login</button>
-  </mat-card-actions>
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+      <div *ngIf="email.errors.required">
+        Email is required.
+      </div>
+    </div>
+
+    <mat-card-actions>
+      <button mat-stroked-button>Login</button>
+    </mat-card-actions>
+  </form>
 </mat-card>

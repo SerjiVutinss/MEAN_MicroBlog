@@ -20,6 +20,10 @@ export class PostUserListComponent extends PostListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getPosts();
+  }
+
+  getPosts() {
     this.getUserPosts();
   }
 
@@ -28,13 +32,4 @@ export class PostUserListComponent extends PostListComponent implements OnInit {
       (data) => this.posts = data
     );
   }
-
-  // getPosts() {
-
-  //   this.postService.getUserPosts(this.auth.getUserDetails()._id).subscribe(
-  //     (data) => this.posts = data,
-  //     null,
-  //     () => this.isUserData = true
-  //   )
-  // }
 }

@@ -1,3 +1,33 @@
-<p>
-  post works!
-</p>
+<mat-card class="card">
+
+  <mat-card-header>
+    <mat-card-title>{{ post.title }}</mat-card-title>
+    <mat-card-subtitle><i>
+        <span>Posted by: </span>
+        <span *ngIf="!isUserPost(post.user_id)">{{ post.username }}</span>
+        <span *ngIf="isUserPost(post.user_id)"><b>{{ post.username }}</b></span>
+        <span>
+          on {{ post.created_utc | dateFromUTC | date: 'short' }}
+          ({{ post.created_utc | timeFromNow }})
+        </span></i>
+      <div>
+        <span *ngIf="post.updated_utc"><i>Last updated: {{ post.updated_utc | dateFromUTC | date: 'short' }}
+            ({{ post.updated_utc | timeFromNow }})</i></span>
+      </div>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+    <p>{{ post.content }}</p>
+
+  </mat-card-content>
+
+  <mat-card-actions>
+    <div *ngIf="auth.isAdmin() || isUserPost(post.user_id)">
+      <!-- <button mat-button color="accent" [routerLink]="['/post/edit', post._id]">Edit</button> -->
+      <button mat-button color="warn" (click)="editDialog(post)">Edit</button>
+      <button mat-button color="warn" (click)="deleteDialog(post._id)">Delete</button>
+    </div>
+  </mat-card-actions>
+
+</mat-card>

@@ -4,13 +4,14 @@ import { Post } from '../post.model';
 import { PostService } from '../post.service';
 import { DateFunctions } from 'src/app/shared/date.functions';
 import { AuthenticationService } from 'src/app/auth';
+import { PostDialogComponent } from '../post.dialog';
 
 @Component({
   selector: 'app-post-create-dialog',
   templateUrl: './post-create-dialog.component.html',
   styleUrls: ['./post-create-dialog.component.css']
 })
-export class PostCreateDialogComponent implements OnInit {
+export class PostCreateDialogComponent extends PostDialogComponent implements OnInit {
 
   protected post: Post = { user_id: "", title: "", content: "", created_utc: "", username: "" };
 
@@ -19,7 +20,9 @@ export class PostCreateDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<any>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private auth: AuthenticationService
-  ) { }
+  ) {
+    super(postService, dialogRef, data);
+  }
 
   ngOnInit() {
     let userDetails = this.auth.getUserDetails();

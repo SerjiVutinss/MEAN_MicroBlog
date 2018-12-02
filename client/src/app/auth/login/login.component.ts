@@ -14,6 +14,7 @@ export class LoginComponent {
   };
 
   private isSubmitted: boolean = true;
+  private messageText: String = "";
 
   constructor(private auth: AuthenticationService, private router: Router) { }
 
@@ -25,8 +26,9 @@ export class LoginComponent {
       if (err.status === 401) {
         this.isSubmitted = true
         console.log("DENIED!!!");
+        console.error(err.error.message);
+        this.messageText = err.error.message;
       } else {
-        console.error(err);
       }
     },
       () => this.isSubmitted = true

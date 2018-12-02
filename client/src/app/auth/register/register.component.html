@@ -18,7 +18,8 @@
         </tr>
         <tr>
           <mat-form-field class="example-full-width">
-            <input matInput required type="password" name="password" placeholder="Password" [(ngModel)]="credentials.password"  #password="ngModel">
+            <input matInput required type="password" name="password" placeholder="Password" [(ngModel)]="credentials.password"
+              #password="ngModel">
           </mat-form-field>
         </tr>
       </table>
@@ -33,8 +34,8 @@
       </div>
       <!-- <div *ngIf="credentials.name.errors.minlength">
         Name must be at least 4 characters long.
-      </div> -->
-      <!-- <div *ngIf="credentials.name.errors.forbiddenName">
+      </div>
+      <div *ngIf="credentials.name.errors.forbiddenName">
         Name cannot be Bob.
       </div> -->
     </div>
