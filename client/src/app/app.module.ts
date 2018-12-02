@@ -104,7 +104,8 @@ import { PostsCommentsComponent } from './posts-comments/posts-comments.componen
     DeleteDialogComponent,
     PostCreateDialogComponent,
     PostEditDialogComponent,
-    CommentCreateDialogComponent
+    CommentCreateDialogComponent,
+    CommentEditDialogComponent,
   ]
 })
 export class AppModule { }

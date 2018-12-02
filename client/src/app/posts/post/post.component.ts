@@ -34,11 +34,11 @@ export class PostComponent implements OnInit {
     return false;
   }
 
-  private onDelete(id: String) {
-    this.postService.deletePost(id).subscribe(() => {
-      this.posts_changed.emit();
-    })
-  }
+  // private onDelete(id: String) {
+  //   this.postService.deletePost(id).subscribe(() => {
+  //     this.posts_changed.emit();
+  //   })
+  // }
 
 
   private newPostDialog() {

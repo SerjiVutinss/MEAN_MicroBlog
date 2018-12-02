@@ -24,9 +24,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .card {
+    width: 90%;
     margin-top: 20px;
     padding-bottom: 20px;
     margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.comment-card {
+    width: 80%;
 }
 
 .example-form {

@@ -2,18 +2,22 @@
   
   <mat-tab-group [selectedIndex]="selectedTabIndex" (selectedTabChange)="onTabChange($event)">
 
+    <!-- User/My Posts -->
     <mat-tab label="My Posts">
       <app-post-user-list *ngIf="detailsLoaded"></app-post-user-list>
     </mat-tab>
 
+    <!-- All Posts -->
     <mat-tab label="All Posts" *ngIf="auth.isAdmin()">
       <app-post-list *ngIf="detailsLoaded" [showAll]="true"></app-post-list>
     </mat-tab>
 
+    <!-- Users -->
     <mat-tab label="Users" *ngIf="auth.isAdmin()">
       <app-user-list (isLoaded)='onUsersLoaded($event)'></app-user-list>
     </mat-tab>
 
+    <!-- Current User Details -->
     <mat-tab label="Details" *ngIf="detailsLoaded">
       <mat-card class="example-card">
         <mat-card-header>

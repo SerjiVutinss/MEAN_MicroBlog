@@ -17,6 +17,9 @@ export class PostsCommentsComponent implements OnInit {
   private post: Post;
   private comments: Comment[] = [];
 
+  private commentsLoading: boolean;
+  private postLoading: boolean;
+
   constructor(
     private auth: AuthenticationService,
     private postService: PostService,
@@ -29,23 +32,28 @@ export class PostsCommentsComponent implements OnInit {
     this.getPost();
   }
 
-  getPost() {
+  private getPost() {
+    this.postLoading = true;
     this.postService.getPost(this.route.snapshot.params['id']).subscribe(
       (data) => this.post = data,
       (e) => { console.log(e) },
-      () => { this.getComments(this.post._id) }
+      () => {
+        this.postLoading = false;
+        this.getComments();
+      }
     )
   }
 
-  getComments(post_id: String) {
-    this.commentService.getPostComments(post_id).subscribe(
+  private getComments() {
+    this.commentsLoading = true;
+    this.commentService.getPostComments(this.post._id).subscribe(
       (data) => this.comments = data,
       (e) => { console.log(e) },
-      () => { console.log(this.comments) }
+      () => { this.commentsLoading = false; }
     );
   }
 
-  newCommentDialog() {
+  private newCommentDialog() {
     const dialogRef = this.dialog.open(CommentCreateDialogComponent, {
       width: '400px',
       data: {
@@ -53,6 +61,6 @@ export class PostsCommentsComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(
-      () => { this.getComments(this.post._id); });
+      () => { this.getComments(); });
   }
 }

@@ -1,7 +1,6 @@
-<mat-card class="card">
+<mat-card class="card comment-card centre">
 
   <mat-card-header>
-    <mat-card-title>{{ comment.title }}</mat-card-title>
     <mat-card-subtitle><i>
         <span>Commented by: </span>
         <span *ngIf="!isUserComment(comment.user_id)">{{ comment.username }}</span>
