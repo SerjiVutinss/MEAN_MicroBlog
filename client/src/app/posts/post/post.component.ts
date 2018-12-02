@@ -15,6 +15,8 @@ import { MatDialog } from '@angular/material';
 export class PostComponent implements OnInit {
 
   @Input() post: Post;
+  @Input() disableLink: boolean;
+
   @Output() posts_changed = new EventEmitter();
 
   constructor(

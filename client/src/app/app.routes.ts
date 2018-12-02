@@ -11,6 +11,7 @@ import {
 } from "./posts";
 import { RedditListComponent } from "./reddit";
 import { CommentListComponent } from "./comments";
+import { PostsCommentsComponent } from "./posts-comments/posts-comments.component";
 
 export const routes: Routes = [
 
@@ -31,6 +32,7 @@ export const routes: Routes = [
     { path: 'comment/list', component: CommentListComponent },
     // { path: 'comment/create', component: CommentCreateComponent },
     // { path: 'comment/edit/:id', component: CommentCreateComponent },
+    { path: 'post/:id/comments', component: PostsCommentsComponent },
 
     // reddit routes
     { path: 'reddit-list', component: RedditListComponent }

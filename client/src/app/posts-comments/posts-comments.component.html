@@ -1,0 +1,13 @@
+<div *ngIf="post">
+    <app-post [post]="post" [disableLink]="true"></app-post>
+</div>
+
+<mat-card class="card" *ngIf="auth.isLoggedIn()">
+    <mat-card-actions>
+        <button mat-button color="primary" (click)="newCommentDialog()">New Comment</button>
+    </mat-card-actions>
+</mat-card>
+
+<div *ngIf="comments">
+    <app-comment *ngFor="let c of comments" [comment]="c"></app-comment>
+</div>

@@ -1,3 +1,26 @@
-<p>
-  post-edit-dialog works!
-</p>
+<h1 mat-dialog-title>Edit Comment</h1>
+<div mat-dialog-content>
+  <form>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <mat-form-field class="example-full-width">
+          <input matInput disabled="true" name="comment_username" placeholder="Username" [(ngModel)]="comment.username">
+        </mat-form-field>
+      </tr>
+      <tr>
+        <mat-form-field class="example-full-width">
+          <input matInput name="title" placeholder="Title" [(ngModel)]="comment.title">
+        </mat-form-field>
+      </tr>
+      <tr>
+        <mat-form-field class="example-full-width">
+          <textarea matInput type="text" name="content" placeholder="Content..." [(ngModel)]="comment.content"></textarea>
+        </mat-form-field>
+      </tr>
+    </table>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button color="warn" (click)="onCommentUpdate()">Update</button>
+  <button mat-button (click)="goBack()">Back</button>
+</div>

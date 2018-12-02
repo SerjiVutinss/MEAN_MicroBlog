@@ -1,6 +1,7 @@
 import { Comment } from './comment.model';
 import { CommentService } from './comment.service';
 
+import { CommentComponent } from './comment/comment.component';
 import { CommentListComponent } from './comment-list/comment-list.component';
 import { CommentUserListComponent } from './comment-list/comment-user-list.component';
 
@@ -10,6 +11,7 @@ import { CommentEditDialogComponent } from './comment-edit-dialog/comment-edit-d
 export {
     Comment,
     CommentService,
+    CommentComponent,
     CommentListComponent,
     CommentCreateDialogComponent,
     CommentEditDialogComponent,

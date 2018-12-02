@@ -1,7 +1,8 @@
 <mat-card class="card">
 
   <mat-card-header>
-    <mat-card-title>{{ post.title }}</mat-card-title>
+    <mat-card-title *ngIf="disableLink">{{ post.title }}</mat-card-title>
+    <mat-card-title *ngIf="!disableLink" [routerLink]="['post', post._id, 'comments']">{{ post.title }}</mat-card-title>
     <mat-card-subtitle><i>
         <span>Posted by: </span>
         <span *ngIf="!isUserPost(post.user_id)">{{ post.username }}</span>

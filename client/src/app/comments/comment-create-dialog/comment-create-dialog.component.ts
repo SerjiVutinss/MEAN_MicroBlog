@@ -3,37 +3,38 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Comment } from '../comment.model';
 import { CommentService } from '../comment.service';
 import { DateFunctions } from 'src/app/shared/date.functions';
+import { AuthenticationService } from 'src/app/auth';
+import { CommentDialogComponent } from '../comment.dialog';
 
 @Component({
   selector: 'app-comment-create-dialog',
   templateUrl: './comment-create-dialog.component.html',
   styleUrls: ['./comment-create-dialog.component.css']
 })
-export class CommentCreateDialogComponent implements OnInit {
+export class CommentCreateDialogComponent extends CommentDialogComponent implements OnInit {
 
-  private comment: Comment = { user_id: "", title: "", content: "", created_utc: "", username: "" };
+  protected comment: Comment = { user_id: "", post_id: "", title: "", content: "", created_utc: "", username: "" };
+
   constructor(
-    public dialogRef: MatDialogRef<CommentCreateDialogComponent>,
+    protected commentService: CommentService,
+    public dialogRef: MatDialogRef<any>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private commentService: CommentService
-  ) { }
+    private auth: AuthenticationService
+  ) {
+    super(commentService, dialogRef, data);
+  }
 
   ngOnInit() {
-    this.comment.user_id = this.data.userDetails._id;
-    this.comment.username = this.data.userDetails.name;
+    let userDetails = this.auth.getUserDetails();
+    console.log(this.data);
+    this.comment.post_id = this.data.post_id;
+    this.comment.user_id = userDetails._id;
+    this.comment.username = userDetails.name;
   }
 
   onCommentCreate() {
-    this.comment.created_utc = DateFunctions.getCurrentUTCEpoch();
+    console.log(this.comment);
     this.commentService.addComment(this.comment).subscribe();
-    this.dialogRef.close();
-  }
-
-  goBack() {
-    this.dialogRef.close();
-  }
-
-  onNoClick(): void {
     this.dialogRef.close();
   }
 }
