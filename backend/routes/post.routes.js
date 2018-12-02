@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require('express-jwt');
-var postCtrl = require('../controllers/post-controller');
+var postCtrl = require('../controllers/post.controller');
 
 var auth = jwt({
     secret: require('../config/database').secret,

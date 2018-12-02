@@ -17,6 +17,9 @@ var postSchema = new mongoose.Schema({
     created_utc: {
         type: String
     },
+    updated_utc: {
+        type: String
+    },
     username: {
         type: String
     }

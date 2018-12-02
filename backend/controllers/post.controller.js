@@ -1,4 +1,4 @@
-var PostModel = require('../models/Post');
+var PostModel = require('../models/post.model');
 
 exports.index = function (req, res) {
     res.send('NOT IMPLEMENTED: Site Home Page');
@@ -62,10 +62,6 @@ exports.update_get = function (req, res) {
 
 // Handle Post update on POST.
 exports.update_post = function (req, res) {
-    // res.send('NOT IMPLEMENTED: Post update POST');
-    console.log("Update POST" + req.params.id);
-    console.log(req.body.title);
-    console.log(req.body.content);
 
     PostModel.findByIdAndUpdate(req.params.id, req.body,
         function (err, data) {
@@ -74,7 +70,7 @@ exports.update_post = function (req, res) {
 };
 
 exports.user_posts_get = function (req, res) {
-    // res.send("HELLO USER POSTS");
+
     var p = [{ title: "none found" }];
     PostModel.find({ user_id: req.params.id }, function (err, data) {
         res.send(data);

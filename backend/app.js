@@ -17,7 +17,7 @@ var dbConfig = require('./config/database');
 // set this to remove a deprecation warning realted to uniqueness in db
 mongoose.set('useCreateIndex', true);
 // Bring in the data model
-require('./models/db');
+require('./models/db.model');
 // Now you bring in the passport config
 require('./config/passport');
 
@@ -31,6 +31,7 @@ var app = express();
 var indexRouter = require('./routes/index');
 var postRouter = require('./routes/post.routes');
 var userRouter = require('./routes/user.routes');
+var commentRouter = require('./routes/comment.routes');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -45,6 +46,7 @@ app.use(passport.initialize());
 app.use('/api', indexRouter);
 app.use('/api/post', postRouter);
 app.use('/api/user', userRouter);
+app.use('/api/comment', commentRouter);
 
 console.log("API up and running");
 
