@@ -16,10 +16,10 @@ var auth = jwt({
 router.get('/list', commentCtrl.list)
 router.get('/:id', commentCtrl.detail);
 router.post('/', commentCtrl.create_post);
-// router.put('/:id', commentCtrl.update_post);
-// router.delete('/:id', commentCtrl.delete_get);
+router.put('/:id', commentCtrl.update_post);
+router.delete('/:id', commentCtrl.delete_get);
 
 // router.get('/user/:id/posts', commentCtrl.user_posts_get);
-router.get('/post/:id/comments', commentCtrl.post_comments_get);
+router.get('/post/:id', commentCtrl.post_comments_get);
 
 module.exports = router;

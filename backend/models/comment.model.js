@@ -9,15 +9,14 @@ var commentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    title: {
-        type: String,
-        unique: true
-    },
     content: {
         type: String,
         required: true
     },
     created_utc: {
+        type: String
+    },
+    updated_utc: {
         type: String
     },
     username: {

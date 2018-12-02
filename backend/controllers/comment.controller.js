@@ -15,6 +15,7 @@ exports.user_comments_get = function (req, res) {
 exports.post_comments_get = function (req, res) {
     // res.send("HELLO USER POSTS");
     // var p = [{ title: "none found" }];
+    console.log(req.params.post_id);
     CommentModel.find({ post_id: req.params.id }, function (err, data) {
         res.send(data);
     }).sort({ created_utc: -1 });
@@ -26,7 +27,7 @@ exports.list = function (req, res) {
     // TODO: look at additional route parameters
     CommentModel.find(function (err, data) {
         res.json(data);
-    }).sort({ created_utc: -1 });
+    });//.sort({ created_utc: -1 });
 };
 
 // Display detail page for a specific Comment.
@@ -45,10 +46,11 @@ exports.create_get = function (req, res) {
 // Handle Comment create on POST.
 exports.create_post = function (req, res) {
     // res.send('NOT IMPLEMENTED: Comment create POST');
+    console.log("API POST COMMENT");
     CommentModel.create({
         user_id: req.body.user_id,
+        post_id: req.body.post_id,
         username: req.body.username,
-        title: req.body.title,
         content: req.body.content,
         created_utc: req.body.created_utc
     });
