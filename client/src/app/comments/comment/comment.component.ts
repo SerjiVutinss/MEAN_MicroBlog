@@ -16,7 +16,7 @@ export class CommentComponent implements OnInit {
 
   @Input() comment: Comment;
   @Input() disableLink: boolean;
-  
+
   @Output() comments_changed = new EventEmitter();
 
   constructor(
@@ -34,23 +34,6 @@ export class CommentComponent implements OnInit {
     return false;
   }
 
-  private onDelete(id: String) {
-    this.commentService.deleteComment(id).subscribe(() => {
-      this.comments_changed.emit();
-    })
-  }
-
-
-  private newCommentDialog() {
-    const dialogRef = this.dialog.open(CommentCreateDialogComponent, {
-      width: '400px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.comments_changed.emit();
-    })
-  }
-
   private editDialog(comment: Comment) {
     const dialogRef = this.dialog.open(CommentEditDialogComponent, {
       width: '400px',
@@ -59,7 +42,9 @@ export class CommentComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.comments_changed.emit();
+      if (result) {
+        this.comments_changed.emit();
+      }
     })
   }
 
@@ -70,9 +55,12 @@ export class CommentComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.commentService.deleteComment(id).subscribe(() => {
-          this.comments_changed.emit();
-        });
+        this.commentService.deleteComment(id).subscribe(
+          (result) => {
+            if (result) {
+              this.comments_changed.emit();
+            }
+          });
       }
     });
   }

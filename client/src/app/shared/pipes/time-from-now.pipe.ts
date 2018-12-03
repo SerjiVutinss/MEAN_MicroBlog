@@ -10,27 +10,7 @@ export class TimeFromNowPipe implements PipeTransform {
 
     let now = DateFunctions.getCurrentUTCEpoch();
     let timeDiffMins = DateFunctions.timeSinceInMinutes(now, value);
-    // let timeDiffHours = timeDiffMins / 60;
     let retVal = this.parseMinutes(timeDiffMins);
-    // let timeDiffDays = timeDiffHours / 24;
-    // let timeDiffWeeks = timeDiffDays / 7;
-    // let timeDiffMonths = timeDiffDays / 30;
-    // let timeDiffYears = timeDiffMonths / 12;
-
-
-    // let retVal = "";
-    // if (Math.abs(timeDiffHours) > 0.5 && Math.abs(timeDiffHours) < 1.5) {
-    //   // hours
-    //   retVal = "~" + Math.floor(timeDiffHours) + "hr";
-    // }
-
-
-    // if (timeDiff < 30) {
-    //   retVal = "~" + Math.floor(timeDiffHours) + "mins";
-    // } else {
-    //   retVal = "~" + Math.floor(timeDiff) + "mins from now";
-    // }
-
 
     return retVal;
   }
@@ -78,21 +58,6 @@ export class TimeFromNowPipe implements PipeTransform {
         retVal.value = deltaDays;
       }
     }
-
-
-
-    // // if we are less than an hour, just use minutes
-    // if (deltaMins == 1) {
-    //   retVal.value = deltaMins;
-    //   retVal.units = " min"
-    // }
-    // if (deltaMins < minsPerHour) {
-    //   retVal.value = deltaMins;
-    //   retVal.units = " mins"
-    // } else {
-    //   retVal.value = deltaMins;
-    //   retVal.units = " mins"
-    // }
 
     // check the sign
     if (value >= 0) {

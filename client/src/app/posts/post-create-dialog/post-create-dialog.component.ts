@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Post } from '../post.model';
 import { PostService } from '../post.service';
 import { AuthenticationService } from 'src/app/auth';
 import { PostDialogComponent } from '../post.dialog';
@@ -11,8 +10,6 @@ import { PostDialogComponent } from '../post.dialog';
   styleUrls: ['./post-create-dialog.component.css']
 })
 export class PostCreateDialogComponent extends PostDialogComponent implements OnInit {
-
-  // protected post: Post = { user_id: "", title: "", content: "", created_utc: "", username: "" };
 
   constructor(
     protected postService: PostService,

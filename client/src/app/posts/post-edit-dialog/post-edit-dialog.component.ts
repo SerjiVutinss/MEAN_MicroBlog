@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Post } from '../post.model';
-import { DateFunctions } from 'src/app/shared/date.functions';
 import { PostService } from '../post.service';
 import { PostDialogComponent } from '../post.dialog';
 
@@ -23,11 +22,13 @@ export class PostEditDialogComponent extends PostDialogComponent implements OnIn
   }
 
   ngOnInit() {
+    // retrieve the supplied post in the dialog data
     this.post = this.data.post as Post;
   }
 
   onPostUpdate() {
     this.postService.updatePost(this.post._id, this.post).subscribe();
+    // return true so it can be caught by the PostComponent
     this.dialogRef.close(true);
   }
 }

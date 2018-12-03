@@ -33,6 +33,6 @@ export class CommentCreateDialogComponent extends CommentDialogComponent impleme
 
   onCommentCreate() {
     this.commentService.addComment(this.comment).subscribe();
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 }

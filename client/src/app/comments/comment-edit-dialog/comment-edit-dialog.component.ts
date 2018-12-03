@@ -28,6 +28,6 @@ export class CommentEditDialogComponent extends CommentDialogComponent implement
 
   onCommentUpdate() {
     this.commentService.updateComment(this.comment._id, this.comment).subscribe();
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 }
