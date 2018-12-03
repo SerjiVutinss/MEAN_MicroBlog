@@ -1,5 +1,7 @@
 # ng-mean-auth
 
+Don't forget to check the (Wiki Here)[https://github.com/SerjiVutinss/ng-mean-auth/wiki/NG-MEAN-AUTH]
+
 ## Server
 
 1. Rename `database.sample.js` to `database.js` and enter Mongo/mLab connection string in `database` export.
