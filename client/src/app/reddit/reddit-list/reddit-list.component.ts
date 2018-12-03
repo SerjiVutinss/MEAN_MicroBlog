@@ -15,8 +15,15 @@ export class RedditListComponent implements OnInit {
 
   ngOnInit() {
     this.redditService.fetchPosts("/r/ireland", "top", 10).subscribe(
-      (data) => this.redditPosts = data
+      (data) => this.redditPosts = data,
+      null,
+      () => console.log(this.redditPosts)
     )
+
   }
 
+  onClick(r: RedditLink) {
+    let link = "https://www.reddit.com" + r.permalink;
+    window.open(link, "_blank");
+  }
 }

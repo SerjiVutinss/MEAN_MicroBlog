@@ -3,45 +3,33 @@
     <mat-expansion-panel *ngFor="let r of redditPosts">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <img mat-card-avatar src="{{ r.thumbnail }}">
+          <img mat-card-avatar *ngIf="!r.self" src="{{ r.thumbnail }}" alt="Self">
+          <p *ngIf="r.self">Self</p>
           <span class="panel-title">{{ r.title }}</span>
         </mat-panel-title>
 
       </mat-expansion-panel-header>
       <mat-card class="centre">
         <mat-card-header>
+          <mat-card-subtitle>
+            <p><i>Posted: on {{ r.created_utc | dateFromUTC | date: 'short' }}
+                ({{ r.created_utc | timeFromNow }})</i> by {{ r.author }}</p>
+            <p>Up: {{ r.ups }}, Down: {{ r.downs }}</p>
+          </mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="{{ r.url }}" alt="Missing Photo">
+
+        <img mat-card-image *ngIf="!r.is_self" src="{{ r.url }}" alt="Self">
+
         <mat-card-content>
-          <p>
-            {{ r.created_utc | date: 'medium'}}
+          <p *ngIf="r.is_self">
+            {{ r.selftext }}
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
+          <!-- <button mat-button>LIKE</button> -->
+          <button mat-button (click)="onClick(r)">View on Reddit</button>
         </mat-card-actions>
       </mat-card>
     </mat-expansion-panel>
   </mat-accordion>
 </div>
-
-
-<!-- <mat-card class="example-card centre">
-</mat-card> -->
-
-<!-- <mat-card-header>
-    <img mat-card-avatar src="{{ r.thumbnail }}">
-    <mat-card-title>{{ r.title }}</mat-card-title>
-    <mat-card-subtitle>{{ r.url }}</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="{{ r.url }}" alt="Missing Photo">
-  <mat-card-content>
-    <p>
-      Some more text..?
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions> -->

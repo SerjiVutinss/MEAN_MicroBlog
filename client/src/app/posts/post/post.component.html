@@ -5,7 +5,7 @@
 
     <!-- if input parameter disableLink exists, do not allow navigating -->
     <mat-card-title *ngIf="disableLink">{{ post.title }}</mat-card-title>
-    <mat-card-title *ngIf="!disableLink" [routerLink]="['/post', post._id, 'comments']">{{ post.title }}</mat-card-title>
+    <mat-card-title class="clickable" *ngIf="!disableLink" [routerLink]="['/post', post._id, 'comments']">{{ post.title }}</mat-card-title>
     
     <!-- details -->
     <mat-card-subtitle><i>

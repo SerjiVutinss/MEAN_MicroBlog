@@ -41,6 +41,12 @@ export class RedditService {
       post.thumbnail = children[i].data.thumbnail;
       post.permalink = children[i].data.permalink;
       post.created_utc = children[i].data.created_utc;
+      post.is_self = children[i].data.is_self;
+      post.selftext = children[i].data.selftext;
+      post.ups = children[i].data.ups;
+      post.downs = children[i].data.downs;
+      post.author = children[i].data.author;
+
       redditPosts.push(post);
     }
     return redditPosts;

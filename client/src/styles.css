@@ -50,3 +50,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     height: 125px;
     margin-top: 35px;
 }
+
+mat-card-content {
+    margin-left: 20px;
+}
+
+.clickable {
+    cursor: pointer;
+}
