@@ -1,6 +1,6 @@
 # ng-mean-auth
 
-Don't forget to check the Wiki [Here](https://github.com/SerjiVutinss/ng-mean-auth/wiki/NG-MEAN-AUTH)
+Don't forget to check the [Wiki](https://github.com/SerjiVutinss/ng-mean-auth/wiki/NG-MEAN-AUTH)
 
 ## Server
 
