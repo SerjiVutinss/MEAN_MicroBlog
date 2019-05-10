@@ -1,4 +1,4 @@
-# ng-mean-auth
+# MEAN Micro Blog
 
 MEAN stack micro-blog application with user authentication using passport.js
 
