@@ -1,5 +1,7 @@
 # ng-mean-auth
 
+MEAN stack micro-blog application with user authentication using passport.js
+
 Don't forget to check the [Wiki](https://github.com/SerjiVutinss/ng-mean-auth/wiki/NG-MEAN-AUTH)
 
 ## Server
